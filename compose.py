@@ -19,7 +19,7 @@ except ImportError:
 
 
 #composing
-HEADER = '\n[CCode (cheader_filename = "{0}", has_type_id = false, cprefix = "mongoc_", lower_case_cprefix = "mongoc_")]\nnamespace {1} {{\n'
+HEADER = '\n[CCode (cheader_filename = "{0}", has_type_id = false, cprefix = "mongoc_", lower_case_cprefix = "mongoc_")]\nnamespace {1} {{'
 
 
 def prepare_license(div = '', wrapped = True):
@@ -63,12 +63,12 @@ def compose_vapi(onefile: bool, folder: str, div: str, out: str):
     logging.debug('Composing VAPI content from partials')
 
     wrap_license = prepare_license(div = div)
-    mongoc_wrapped = prepare_partials(find_partials(folder = folder, suffix = '.mongoc.vapi'), div = div)
-    bson_wrapped = prepare_partials(find_partials(folder = folder, suffix = '.bson.vapi'), div = div)
+    mongoc_wrapped = prepare_partials(find_partials(folder = './{}/mongoc'.format(folder), suffix = '.vapi'), div = div)
+    bson_wrapped = prepare_partials(find_partials(folder = './{}/bson'.format(folder), suffix = '.vapi'), div = div)
 
     joined = ''.join(mongoc_wrapped + bson_wrapped if onefile else mongoc_wrapped)
 
-    formatted = '{0}\n{1}\n{2}}}'.format(wrap_license, HEADER.format('mongoc.h,bson.h', 'Mongo'), joined)
+    formatted = '{0}\n{1}\n{2}\n}}'.format(wrap_license, HEADER.format('mongoc.h,bson.h', 'Mongo'), joined)
 
     with open(out, 'w') as f:
         f.write(formatted)
