@@ -14,8 +14,9 @@ license:
 	python3 ./compose.py --license
 
 clean:
-	@find . -type d -name  '__pycache__' -exec rm -rf {} + 2> /dev/null
-	@find . -name  'test_crud' -exec rm -rf {} + 2> /dev/null
+	find . -type d -name  '__pycache__' -exec rm -rf {} + 2> /dev/null
+	find . -name  'test_crud' -exec rm -f {} + 2> /dev/null
+	find . -name  'libmongoc-1.0.vapi' -exec rm -f {} + 2> /dev/null
 
 help:
 	echo "help: this message"
@@ -25,7 +26,7 @@ help:
 	echo "test: builds and start test"
 	echo "clean: removes pycache and test"
 
-test: build
+test: clean build
 	./test_crud
 
 build: compose
