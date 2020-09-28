@@ -1,0 +1,4 @@
+crud
+.vscode/
+__pycache__/
+build*/
