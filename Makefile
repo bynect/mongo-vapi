@@ -15,7 +15,7 @@ license:
 
 clean:
 	find . -type d -name  '__pycache__' -exec rm -rf {} + 2> /dev/null
-	find . -name  'test_crud' -exec rm -f {} + 2> /dev/null
+	find . -name  'test_*' -exec rm -f {} + 2> /dev/null
 	find . -name  'libmongoc-1.0.vapi' -exec rm -f {} + 2> /dev/null
 
 help:
@@ -23,11 +23,20 @@ help:
 	echo "compose: generates VAPI file"
 	echo "license: ouptus license"
 	echo "build: builds test"
-	echo "test: builds and start test"
+	echo "test-crud: builds and start crud test"
+	echo "test-status: builds and start status test"
 	echo "clean: removes pycache and test"
 
-test: clean build
+test: test-status
+
+test-crud: build-crud
 	./test_crud
 
-build: compose
+test-status: build-status
+	./test_status
+
+build-crud: clean compose
 	valac --pkg glib-2.0 --pkg libmongoc-1.0 --vapidir . -o test_crud test/crud.vala
+
+build-status: clean compose
+	valac --pkg glib-2.0 --pkg libmongoc-1.0 --vapidir . -o test_status test/status.vala

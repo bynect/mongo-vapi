@@ -1,5 +1,6 @@
-test_crud
 .vscode/
 __pycache__/
 build*/
+
+test_*
 libmongoc-1.0.vapi
