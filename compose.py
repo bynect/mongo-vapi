@@ -19,7 +19,7 @@ except ImportError:
 
 
 #composing
-HEADER = '\n[CCode (cheader_filename = "{0}")]\nnamespace {1} {{\n'
+HEADER = '\n[CCode (cheader_filename = "{0}", has_type_id = false)]\nnamespace {1} {{\n'
 
 
 def prepare_license(div = '', wrapped = True):
@@ -35,19 +35,7 @@ def prepare_license(div = '', wrapped = True):
     return raw_license
 
 
-def bson_partials_path(folder, suffix = '.bson.vapi'):
-
-    logging.debug('Searching for *{0} files in {1}'.format(suffix, folder))
-
-    partials = []
-    for fn in os.listdir('./{}'.format(folder)):
-        if fn.endswith(suffix):
-            partials.append('./{0}/{1}'.format(folder, fn))
-
-    return partials
-
-
-def mongoc_partials_path(folder, suffix = '.mongoc.vapi'):
+def partials_path(folder, suffix):
 
     logging.debug('Searching for *{0} files in {1}'.format(suffix, folder))
 
@@ -75,8 +63,8 @@ def compose_vapi(onefile: bool, folder: str, div: str, out: str):
     logging.debug('Composing VAPI content from partials')
 
     wrap_license = prepare_license(div = div)
-    mongoc_wrapped = prepare_partials(mongoc_partials_path(folder = folder), div = div)
-    bson_wrapped = prepare_partials(mongoc_partials_path(folder = folder), div = div)
+    mongoc_wrapped = prepare_partials(partials_path(folder = folder, suffix = '.mongoc.vapi'), div = div)
+    bson_wrapped = prepare_partials(partials_path(folder = folder, suffix = '.bson.vapi'), div = div)
 
     joined = ''.join(mongoc_wrapped)
     joined.join(bson_wrapped)
@@ -124,4 +112,4 @@ elif args.out and args.dir:
         logging.info('Done. VAPI generated in `{}`'.format(args.out))
     finally:
         logging.info('\nLicensed under MIT, see LICENSE or `make license`')
-        logging.info('Do `python3 compose.py -h` to custom parameters')
+        logging.info('Do `python3 compose.py -h` to custom parameters\n')
