@@ -2,3 +2,4 @@ crud
 .vscode/
 __pycache__/
 build*/
+libmongoc-1.0.vapi

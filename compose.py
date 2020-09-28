@@ -2,6 +2,8 @@
 # -*- coding: utf-8 -*-
 
 import os
+import argparse
+import logging
 
 try:
     from textwrap import indent
@@ -16,47 +18,110 @@ except ImportError:
         return ''.join(prefixed_lines())
 
 
-header = '[CCode (cheader_filename = "{0}", has_type_id = false)]\nnamespace {1} {{\n'
-folder = 'partials'
+#composing
+HEADER = '\n[CCode (cheader_filename = "{0}")]\nnamespace {1} {{\n'
 
 
-bson_partials = ['./{0}/{1}'.format(folder, fn) for fn in os.listdir('./{}'.format(folder)) if fn.endswith('.bson.vapi')]
-mongoc_partials = ['./{0}/{1}'.format(folder, fn) for fn in os.listdir('./{}'.format(folder)) if fn.endswith('.mongoc.vapi')]
+def prepare_license(div = '', wrapped = True):
+
+    with open('./LICENSE', 'r') as f:
+        raw_license = f.read()
+        logging.debug('Reading LICENSE file')
+
+    if wrapped:
+        wrap_license = indent(raw_license, div)
+        return '/*\n{}\n*/'.format(wrap_license)
+
+    return raw_license
 
 
-def prepare_partials(partials_fn):
+def bson_partials_path(folder, suffix = '.bson.vapi'):
+
+    logging.debug('Searching for *{0} files in {1}'.format(suffix, folder))
+
+    partials = []
+    for fn in os.listdir('./{}'.format(folder)):
+        if fn.endswith(suffix):
+            partials.append('./{0}/{1}'.format(folder, fn))
+
+    return partials
+
+
+def mongoc_partials_path(folder, suffix = '.mongoc.vapi'):
+
+    logging.debug('Searching for *{0} files in {1}'.format(suffix, folder))
+
+    partials = []
+    for fn in os.listdir('./{}'.format(folder)):
+        if fn.endswith(suffix):
+            partials.append('./{0}/{1}'.format(folder, fn))
+
+    return partials
+
+
+def prepare_partials(partials_path, div):
 
     final_partials = []
-    for fn in partials_fn:
+    for fn in partials_path:
         with open(fn, 'r') as f:
-            final_partials.append(indent(f.read(), '    '))#4 spaces indent
+            final_partials.append(indent(f.read(), div))
+            logging.debug('Reading file {}'.format(fn))
 
     return final_partials
 
 
-def prepare_license():
-    with open('./LICENSE', 'r') as f:
-        _license = f.read()
+def compose_vapi(onefile: bool, folder: str, div: str, out: str):
 
-    return '/*\n{}\n*/'.format(indent(_license, '   '))
+    logging.debug('Composing VAPI content from partials')
 
+    wrap_license = prepare_license(div = div)
+    mongoc_wrapped = prepare_partials(mongoc_partials_path(folder = folder), div = div)
+    bson_wrapped = prepare_partials(mongoc_partials_path(folder = folder), div = div)
 
-def onefile():
+    joined = ''.join(mongoc_wrapped)
+    joined.join(bson_wrapped)
 
-    _license = prepare_license()
+    final = '{0}\n{1}\n{2}\n}}'.format(wrap_license, HEADER.format('mongoc.h,bson.h', 'Mongo'), joined)
 
-    mongoc_wrapped = prepare_partials(mongoc_partials)
-    bson_wrapped = prepare_partials(bson_partials)
-
-    
-    joined_str = ''.join(mongoc_wrapped)
-    joined_str.join(bson_wrapped)
-
-    final_str = '{0}\n\n{1}\n{2}\n}}\n'.format(_license, header.format('mongoc.h,bson.h', 'Mongo'), joined_str)
-
-    with open('./libmongoc-1.0.vapi', 'w') as f:
-        f.write(final_str)
+    with open(out, 'w') as f:
+        f.write(final)
+        logging.debug('Writing on {}'.format(out))
 
 
-if __name__ == "__main__":
-    onefile()
+#arg parsing
+parser = argparse.ArgumentParser(
+    prog = 'compose',
+    usage = '%(prog)s [options]',
+    description = 'Compose the partials and generate a VAPI file'
+)
+
+parser.add_argument('-o', '--out', dest = 'out', type = str, action = 'store', default = 'libmongoc-1.0.vapi', help = 'Specify output filename')
+parser.add_argument('-d', '--dir', dest = 'dir', action = 'store', type = str, default = 'partials', help = 'Specify partials dir')
+parser.add_argument('-v', '--verbose', dest = 'verbose', action = 'store_true', help = 'Activate verbose mode')
+parser.add_argument('-l', '--license', dest = 'license', action = 'store_true', help = 'Show license')
+parser.add_argument('-i', '--indent', dest = 'indent', action = 'store', default = '    ', help = 'Specify indentation, default 4 spaces')
+parser.add_argument('--onefile', dest = 'onefile', action = 'store_true', default = True, help = 'Specify indentation, default 4 spaces')
+
+args = parser.parse_args()
+
+if args.verbose:
+    logging.basicConfig(level=logging.DEBUG, format='%(message)s')
+    logging.debug("Verbose mode setted")\
+
+else:
+    logging.basicConfig(level=logging.INFO, format='%(message)s')
+
+
+if args.license:
+    print('\n', prepare_license(wrapped = False), '\n')
+
+elif args.out and args.dir:
+    try:
+        compose_vapi(onefile = args.onefile, folder = args.dir, div = args.indent, out = args.out)
+    except:
+        logging.critical("An error occurred, please retry", exc_info = True if args.verbose else False)
+    else:
+        logging.info('Done. VAPI generated in `{}`'.format(args.out))
+    finally:
+        logging.info('\nLicensed under MIT, see LICENSE or `make license`')
+        logging.info('Do `python3 compose.py -h` to custom parameters')

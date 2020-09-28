@@ -1,22 +1,29 @@
-.DEFAULT := gen
-.SILENT: help gen license build test
-.PHONY: help gen license build test
+.DEFAULT: compose
+.SILENT: compose license clean help test build
+.PHONY: compose license clean help test build 
 
-gen:
-	echo "Generating VAPI file"
-	./compose.py
-	echo "Licensed under MIT, see LICENSE (or make license)"
+compose:
+	echo "Generating VAPI file\n"
+	python3 ./compose.py
 
 license:
-	cat ./LICENSE
+	python3 ./compose.py --license
 
-build: gen
-	valac --pkg glib-2.0 --pkg libmongoc-1.0 --vapidir . test/crud.vala -o crud
+clean:
+	find . -type d -name  '__pycache__' -exec rm -rf {} +
+	rm -f crud
+	echo "Removed `crud` and `__pycache__/`"
+
+help:
+	echo "help: this message"
+	echo "compose: generates VAPI file"
+	echo "license: ouptus license"
+	echo "build: builds test"
+	echo "test: builds and start test"
+	echo "clean: removes pycache and test"
 
 test: build
 	./crud
 
-help:
-	echo HELP
-	echo ===================
-	echo help: this
+build: compose
+	valac --pkg glib-2.0 --pkg libmongoc-1.0 --vapidir . -o crud test/crud.vala
