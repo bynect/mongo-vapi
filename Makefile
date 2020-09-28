@@ -3,16 +3,19 @@
 .PHONY: compose license clean help test build 
 
 compose:
-	echo "Generating VAPI file\n"
+	echo "Generating VAPI file"
 	python3 ./compose.py
+
+verbose:
+	echo "Generating VAPI file"
+	python3 ./compose.py --verbose
 
 license:
 	python3 ./compose.py --license
 
 clean:
-	find . -type d -name  '__pycache__' -exec rm -rf {} +
-	rm -f crud
-	echo "Removed `crud` and `__pycache__/`"
+	@find . -type d -name  '__pycache__' -exec rm -rf {} + 2> /dev/null
+	@find . -name  'test_crud' -exec rm -rf {} + 2> /dev/null
 
 help:
 	echo "help: this message"
@@ -23,7 +26,7 @@ help:
 	echo "clean: removes pycache and test"
 
 test: build
-	./crud
+	./test_crud
 
 build: compose
-	valac --pkg glib-2.0 --pkg libmongoc-1.0 --vapidir . -o crud test/crud.vala
+	valac --pkg glib-2.0 --pkg libmongoc-1.0 --vapidir . -o test_crud test/crud.vala

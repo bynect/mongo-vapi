@@ -19,7 +19,7 @@ except ImportError:
 
 
 #composing
-HEADER = '\n[CCode (cheader_filename = "{0}", has_type_id = false)]\nnamespace {1} {{\n'
+HEADER = '\n[CCode (cheader_filename = "{0}", has_type_id = false, cprefix = "mongoc_", lower_case_cprefix = "mongoc_")]\nnamespace {1} {{\n'
 
 
 def prepare_license(div = '', wrapped = True):
@@ -35,7 +35,7 @@ def prepare_license(div = '', wrapped = True):
     return raw_license
 
 
-def partials_path(folder, suffix):
+def find_partials(folder, suffix):
 
     logging.debug('Searching for *{0} files in {1}'.format(suffix, folder))
 
@@ -63,16 +63,15 @@ def compose_vapi(onefile: bool, folder: str, div: str, out: str):
     logging.debug('Composing VAPI content from partials')
 
     wrap_license = prepare_license(div = div)
-    mongoc_wrapped = prepare_partials(partials_path(folder = folder, suffix = '.mongoc.vapi'), div = div)
-    bson_wrapped = prepare_partials(partials_path(folder = folder, suffix = '.bson.vapi'), div = div)
+    mongoc_wrapped = prepare_partials(find_partials(folder = folder, suffix = '.mongoc.vapi'), div = div)
+    bson_wrapped = prepare_partials(find_partials(folder = folder, suffix = '.bson.vapi'), div = div)
 
-    joined = ''.join(mongoc_wrapped)
-    joined.join(bson_wrapped)
+    joined = ''.join(mongoc_wrapped + bson_wrapped if onefile else mongoc_wrapped)
 
-    final = '{0}\n{1}\n{2}\n}}'.format(wrap_license, HEADER.format('mongoc.h,bson.h', 'Mongo'), joined)
+    formatted = '{0}\n{1}\n{2}}}'.format(wrap_license, HEADER.format('mongoc.h,bson.h', 'Mongo'), joined)
 
     with open(out, 'w') as f:
-        f.write(final)
+        f.write(formatted)
         logging.debug('Writing on {}'.format(out))
 
 
@@ -112,4 +111,4 @@ elif args.out and args.dir:
         logging.info('Done. VAPI generated in `{}`'.format(args.out))
     finally:
         logging.info('\nLicensed under MIT, see LICENSE or `make license`')
-        logging.info('Do `python3 compose.py -h` to custom parameters\n')
+        logging.info('Do `python3 compose.py -h` to see usage options')

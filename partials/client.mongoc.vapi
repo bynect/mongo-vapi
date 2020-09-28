@@ -1,3 +1,4 @@
+
 /**
  * mongoc_client_t
  */
@@ -12,7 +13,7 @@ public class Client {
     [CCode (cname = "mongoc_client_new_from_uri")]
     public Client.from_uri (Uri uri);
 
-    [CCode (cname="mongoc_client_get_server_status")]
-    public bool get_server_status (ReadPrefs read_prefs, Bson.Bson reply, Bson.BsonError? error);
+    [CCode (cname = "mongoc_client_get_server_status")]
+    public bool get_server_status (ReadPrefs read_prefs, Bson reply, BsonError? error);
 
 }
