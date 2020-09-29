@@ -7,6 +7,7 @@ import logging
 
 try:
     from textwrap import indent
+
 except ImportError:
 
     def indent(text: str, prefix: str):
@@ -16,6 +17,8 @@ except ImportError:
                 yield (prefix + line if predicate(line) else line)
 
         return ''.join(prefixed_lines())
+        
+    logging.debug("failed to import indent from textwrap, using fallback function")
 
 
 #composing
@@ -87,20 +90,22 @@ parser.add_argument('-d', '--dir', dest = 'dir', action = 'store', type = str, d
 parser.add_argument('-v', '--verbose', dest = 'verbose', action = 'store_true', help = 'Activate verbose mode')
 parser.add_argument('-l', '--license', dest = 'license', action = 'store_true', help = 'Show license')
 parser.add_argument('-i', '--indent', dest = 'indent', action = 'store', default = '    ', help = 'Specify indentation, default 4 spaces')
-parser.add_argument('--onefile', dest = 'onefile', action = 'store_true', default = True, help = 'Specify indentation, default 4 spaces')
+parser.add_argument('--onefile', dest = 'onefile', action = 'store_true', default = True, help = 'Specify if the ouput will be one file')
 
 args = parser.parse_args()
 
-if args.verbose:
-    logging.basicConfig(level=logging.DEBUG, format='%(message)s')
-    logging.debug("Verbose mode setted")\
+def set_verbose(level):
 
-else:
+    if level:
+        logging.basicConfig(level=logging.DEBUG, format='%(message)s')
+        logging.debug("Verbose mode setted")
+
     logging.basicConfig(level=logging.INFO, format='%(message)s')
 
+set_verbose(args.verbose)
 
 if args.license:
-    print('\n', prepare_license(wrapped = False), '\n')
+    print(prepare_license(wrapped = False), '\n')
 
 elif args.out and args.dir:
     try:

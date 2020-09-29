@@ -13,3 +13,15 @@ public struct BsonError {
     public string strerror (int err_code, string buf, size_t buflen);
 
 }
+
+/**
+ * bson_json_error_code_t
+ */
+
+[CCode (cname = "bson_json_error_code_t", has_type_id = false, cprefix = "BSON_JSON_ERROR_READ_")]
+[Flags]
+public enum JsonErrorCode {
+    CORRUPT_JS,
+    INVALID_PARAM,
+    CB_FAILURE
+}

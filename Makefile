@@ -1,12 +1,12 @@
 .DEFAULT: compose
-.SILENT: compose license clean help test build
-.PHONY: compose license clean help test build 
+.SILENT: compose license clean help test-status test test-crud verbose build-crud build-status
+.PHONY: compose license clean help test-status test test-crud verbose build-crud build-status
 
-compose:
+compose: clean
 	echo "Generating VAPI file"
 	python3 ./compose.py
 
-verbose:
+verbose: clean
 	echo "Generating VAPI file"
 	python3 ./compose.py --verbose
 
@@ -39,4 +39,4 @@ build-crud: clean compose
 	valac --pkg glib-2.0 --pkg libmongoc-1.0 --vapidir . -o test_crud test/crud.vala
 
 build-status: clean compose
-	valac --pkg glib-2.0 --pkg libmongoc-1.0 --vapidir . -o test_status test/status.vala
+	valac --pkg glib-2.0 --pkg posix --pkg libmongoc-1.0 --vapidir . -o test_status test/status.vala
