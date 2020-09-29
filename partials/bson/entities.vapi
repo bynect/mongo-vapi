@@ -1,5 +1,35 @@
 
 /**
+ * bson_type_t
+ */
+
+[CCode (cname = "bson_type_t", has_type_id = false, cprefix = "BSON_TYPE_")]
+public enum BsonType {
+    EOD,
+    DOUBLE,
+    UTF8,
+    DOCUMENT,
+    ARRAY,
+    BINARY,
+    UNDEFINED,
+    OID,
+    BOOL,
+    DATE_TIME,
+    NULL,
+    REGEX,
+    DBPOINTER,
+    CODE,
+    SYMBOL,
+    CODEWSCOPE,
+    INT32,
+    TIMESTAMP,
+    INT64,
+    DECIMAL128,
+    MAXKEY,
+    MINKEY
+}
+
+/**
  * bson_subtype_t
  */
 
@@ -119,4 +149,13 @@ public struct BsonContext {
 [CCode (cname = "bson_value_t", free_function = "bson_value_destroy", copy_function = "bson_value_copy", has_type_id = false)]
 public struct BsonValue {
 
+}
+
+/**
+ * bson_visitor_t
+ */
+
+[CCode (cname = "bson_visitor_t", free_function = "", has_type_id = false)]
+public struct BsonVisitor {
+    
 }

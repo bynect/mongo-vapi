@@ -3,4 +3,5 @@ __pycache__/
 build*/
 
 test_*
-libmongoc-1.0.vapi
+libmongoc-1.0.*
+!vapi/*

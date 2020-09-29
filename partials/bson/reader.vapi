@@ -82,3 +82,15 @@ public delegate ssize_t BsonReaderReadFunc<T> (T handle, T buf, size_t count);
 
 [CCode (cname = "bson_reader_destroy_func_t", has_type_id = false, simple_generics = true)]
 public delegate void BsonReaderDestroyFunc<T> (T handle);
+
+/**
+ * bson_json_error_code_t
+ */
+
+[CCode (cname = "bson_json_error_code_t", has_type_id = false, cprefix = "BSON_JSON_ERROR_READ_")]
+[Flags]
+public enum JsonErrorCode {
+    CORRUPT_JS,
+    INVALID_PARAM,
+    CB_FAILURE
+}
