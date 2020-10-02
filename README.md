@@ -1,6 +1,6 @@
 # Mongo Vapi
 
-Vala bindings for the [MongoDB C Driver](https://github.com/mongodb/mongo-c-driver "mongoc driver").
+Vala bindings for the [Mongo C Driver](https://github.com/mongodb/mongo-c-driver "mongoc driver").
 
 **Still work in progess, not ready for CRUDs.**
 
@@ -11,15 +11,13 @@ Vala bindings for the [MongoDB C Driver](https://github.com/mongodb/mongo-c-driv
 $ git clone https://github.com/bynect/mongo-vapi.git && cd mongo-vapi && make
 ```
 
-## Test CRUDs
+## Tests
 
 ```sh
-#clone the repo and do
-$ make test
-
-#or
+#check connection to local database
 $ make test-status
 
+#make basic crud operation
 $ make test-crud
 ```
 
@@ -31,7 +29,7 @@ Because the codebase to bind is fairly big, the vapis are divided in partials fi
 
 **Deprecated or next-to-deprecation features of mongoc are actually not being binded.**
 
-If you need only the VAPI file, you can download it from the releases allegates or get the last generated .vapi file in the [`vapi` folder](./vapi/).
+If you need only the VAPI file, you can download it from the releases allegates or get the last generated `.vapi` file in the [`vapi` folder](./vapi/).
 
 ## License
 Licensed under MIT, you are free to use this VAPI. See LICENSE for more.

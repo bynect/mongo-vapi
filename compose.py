@@ -84,7 +84,7 @@ def compose_vapi(onefile: bool, folder: str, div: str, out: str, deps: bool, fil
 
     wrap_license = prepare_license(div = div)
     mongoc_wrapped = prepare_partials(find_partials(folder = './{}/mongoc'.format(folder), suffix = '.vapi'), div = div)
-    bson_wrapped = prepare_partials(find_partials(folder = './{}/bson'.format(folder), suffix = '.vapi'), div = div)
+    bson_wrapped = prepare_partials(find_partials(folder = './{}/libbson'.format(folder), suffix = '.vapi'), div = div)
 
     joined = ''.join(mongoc_wrapped + bson_wrapped if onefile else mongoc_wrapped)
 

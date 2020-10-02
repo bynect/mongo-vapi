@@ -17,7 +17,6 @@ license:
 	python3 ./compose.py --license
 
 clean:
-	clear
 	rm -rf vapi/**
 	rm -rf build/**
 
