@@ -7,12 +7,14 @@
 [Compact]
 public class Client {
 
+    //Constructors
     [CCode (cname = "mongoc_client_new")]
     public Client (string uri);
 
     [CCode (cname = "mongoc_client_new_from_uri")]
     public Client.from_uri (Uri uri);
-
+    
+    //Methods
     [CCode (cname = "mongoc_client_get_server_status")]
     public bool get_server_status (ReadPrefs read_prefs, Bson reply, BsonError? error);
 

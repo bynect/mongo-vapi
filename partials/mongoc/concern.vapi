@@ -20,6 +20,9 @@ public enum ReadMode {
 [CCode (cname = "mongoc_read_prefs_t", free_function = "mongoc_read_prefs_destroy")]
 [Compact]
 public class ReadPrefs {
+
+    //Constructor
     [CCode (cname = "mongoc_read_prefs_new")]
     public ReadPrefs (ReadMode mode);
+    
 }

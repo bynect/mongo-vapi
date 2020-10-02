@@ -7,9 +7,7 @@
 [Compact]
 public class Bson {
 
-    /**
-     * Constructors
-     */
+    //Constructors
     [CCode (cname = "bson_new")]
     public Bson ();
 
@@ -20,17 +18,13 @@ public class Bson {
     [CCode (cname = "bson_new_from_data")]
     public Bson.from_data (uint8 data, size_t length);
 
-
-    //TODO: Check ssize_t
     [CCode (cname = "bson_new_from_json")]
     public Bson.from_json (uint8 data, ssize_t length, BsonError? error);
 
     [CCode (cname = "bson_sized_new")]
     public Bson.sized (size_t size);
 
-    /**
-     * Methods
-     */
+    //Methods
     [CCode (cname = "bson_append_array")]
     public bool append_array (string key, int key_length, Bson array);
 
@@ -106,7 +100,6 @@ public class Bson {
     [CCode (cname = "bson_append_symbol")]
     public bool append_symbol (string key, int key_length, string? value, int length);
 
-    //TODO: Check time_t
     [CCode (cname = "bson_append_time_t")]
     public bool append_time_t (string key, int key_length, time_t value);
 
@@ -171,7 +164,6 @@ public class Bson {
     [CCode (cname = "bson_init")]
     public void init ();
 
-    //TODO: Check ssize_t vs size_t
     [CCode (cname = "bson_init_from_json")]
     public bool init_from_json (string data, ssize_t size, BsonError? error);
 

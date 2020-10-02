@@ -19,14 +19,14 @@ public struct BsonError {
  */
 
 [CCode (cname = "bson_get_monotonic_time")]
-public int64 get_monotonic_time ();
+public int64 bson_get_monotonic_time ();
 
 /**
  * bson_gettimeofday
  */
 
 [CCode (cname = "bson_gettimeofday")]
-public int gettimeofday (GLib.TimeVal tv, GLib.TimeZone tz);
+public int bson_gettimeofday (GLib.TimeVal tv, GLib.TimeZone tz);
 
 /**
  * bson_check_version
@@ -75,13 +75,13 @@ public void bson_mem_restore_vtable ();
  */
 
 [CCode (cname = "bson_mem_set_vtable")]
-public void bson_mem_set_vtable (BsomMemVTable vtable);
+public void bson_mem_set_vtable (MemVTable vtable);
 
 /**
  * bson_mem_vtable_t
  */
 
 [CCode (cname = "bson_mem_vtable_t", has_type_id = false, free_function = "")]
-public struct BsomMemVTable {
+public struct MemVTable {
 
 }

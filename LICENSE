@@ -1,6 +1,4 @@
-Mongo C Driver bindings for Vala
-
-Copyright (c) 2020 nect <bynect@gmail.com>
+Copyright (c) 2020 bynect <bynect@gmail.com>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

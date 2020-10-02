@@ -18,8 +18,8 @@ license:
 
 clean:
 	clear
-	find . -type d -name  'vapi' -exec rm -rf {} + 2> /dev/null
-	find . -type d -name  'build' -exec rm -rf {} + 2> /dev/null
+	rm -rf vapi/**
+	rm -rf build/**
 
 help:
 	echo "help: this message"

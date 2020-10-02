@@ -9,55 +9,55 @@ public class BsonIter {
 
     //Methods    
     [CCode (cname = "bson_iter_array")]
-    public void iter_array (uint32 array_len, ref uint8 array);
+    public void array (uint32 array_len, ref uint8 array);
 
     [CCode (cname = "bson_iter_as_bool")]
-    public bool iter_as_bool ();
+    public bool as_bool ();
 
     [CCode (cname = "bson_iter_as_double")]
-    public bool iter_as_double ();
+    public bool as_double ();
     
     [CCode (cname = "bson_iter_as_int64")]
-    public int64 iter_as_int64 ();
+    public int64 as_int64 ();
 
     [CCode (cname = "bson_iter_binary")]
-    public void iter_binary (BsonSubtype? subtype, uint32 binary_len, ref uint8 binary);
+    public void binary (BsonSubtype? subtype, uint32 binary_len, ref uint8 binary);
 
     [CCode (cname = "bson_iter_bool")]
-    public bool iter_bool ();
+    public bool bool ();
 
     [CCode (cname = "bson_iter_code")]
-    public string iter_code (uint32? length);
+    public string code (uint32? length);
 
     [CCode (cname = "bson_iter_codewscope")]
-    public string iter_codewscope (uint32 length, uint32 scope_len, ref uint8? scope);
+    public string codewscope (uint32 length, uint32 scope_len, ref uint8? scope);
 
     [CCode (cname = "bson_iter_date_time")]
-    public int64 iter_date_time ();
+    public int64 date_time ();
 
     [CCode (cname = "bson_iter_decimal128")]
-    public bool iter_decimal128 (BsonDecimal128 dec);
+    public bool decimal128 (BsonDecimal128 dec);
 
     [CCode (cname = "bson_iter_document")]
-    public void iter_document (uint32 document_len, ref uint8 document);
+    public void document (uint32 document_len, ref uint8 document);
 
     [CCode (cname = "bson_iter_double")]
-    public double iter_double ();
+    public double double ();
 
     [CCode (cname = "bson_iter_dup_utf8")]
-    public string iter_dup_utf8 (uint32? length);
+    public string dup_utf8 (uint32? length);
 
     [CCode (cname = "bson_iter_find")]
-    public bool iter_find (string key);
+    public bool find (string key);
 
     [CCode (cname = "bson_iter_find_case")]
-    public bool iter_find_case (string key);
+    public bool find_case (string key);
 
     [CCode (cname = "bson_iter_find_descendant")]
-    public bool iter_find_descendant (string dotkey, BsonIter descendant);
+    public bool find_descendant (string dotkey, BsonIter descendant);
 
     [CCode (cname = "bson_iter_find_w_len")]
-    public bool iter_find_w_len (string key, int keylen);
+    public bool find_w_len (string key, int keylen);
 
     [CCode (cname = "bson_iter_init")]
     public bool init (Bson bson);

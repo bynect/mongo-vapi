@@ -33,11 +33,13 @@ def prepare_license(div = '', wrapped = True):
         raw_license = f.read()
         logging.debug('Reading LICENSE file')
 
+    license_header = "Mongo C Driver bindings for Vala\n"
+
     if wrapped:
-        wrap_license = indent(raw_license, div)
+        wrap_license = indent("{}\n{}".format(license_header, raw_license), div)
         return '/*\n{}\n*/'.format(wrap_license)
 
-    return raw_license
+    return "{}\n{}".format(license_header, raw_license)
 
 
 def find_partials(folder, suffix):
