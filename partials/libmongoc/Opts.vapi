@@ -19,20 +19,20 @@ public class TransactionOpt {
 public class SessionOpt {
 
     //Costructor
-    [CCode (cname = "mongoc_session_opt_new")]
+    [CCode (cname = "mongoc_session_opts_new")]
     public SessionOpt ();
 
     //Methods
-    [CCode (cname = "mongoc_session_opt_get_causal_consistency")]
+    [CCode (cname = "mongoc_session_opts_get_causal_consistency")]
     public bool get_causal_consistency ();
 
-    [CCode (cname = "mongoc_session_opt_set_causal_consistency")]
+    [CCode (cname = "mongoc_session_opts_set_causal_consistency")]
     public void set_causal_consistency (bool causal_consistency);
 
-    [CCode (cname = "mongoc_session_opt_get_default_transaction_opts")]
+    [CCode (cname = "mongoc_session_opts_get_default_transaction_opts")]
     public TransactionOpt get_default_transaction_opts ();
 
-    [CCode (cname = "mongoc_session_opt_set_default_transaction_opts")]
+    [CCode (cname = "mongoc_session_opts_set_default_transaction_opts")]
     public void set_default_transaction_opts (TransactionOpt txopts);
 
 }
