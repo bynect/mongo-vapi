@@ -23,7 +23,7 @@ int main (string[] argv) {
     var client = new Mongo.Client.from_uri (uri);
 
     print_status (client);
-
+    
     Mongo.cleanup ();//Mongo C Driver internal cleanup
 
     return 0;

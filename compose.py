@@ -26,14 +26,16 @@ HEADER = '\n[CCode (cheader_filename = "{0}", has_type_id = false, cprefix = "mo
 
 DEPENDENCIES = ['posix']
 
+IGNORED_FILES = ['Callbacks.vapi']
+
 
 def prepare_license(div = '', wrapped = True):
+
+    license_header = 'Mongo C Driver bindings for Vala\n'
 
     with open('./LICENSE', 'r') as f:
         raw_license = f.read()
         logging.debug('Reading LICENSE file')
-
-    license_header = "Mongo C Driver bindings for Vala\n"
 
     if wrapped:
         wrap_license = indent("{}\n{}".format(license_header, raw_license), div)
@@ -48,7 +50,7 @@ def find_partials(folder, suffix):
 
     partials = []
     for fn in os.listdir('./{}'.format(folder)):
-        if fn.endswith(suffix):
+        if fn.endswith(suffix) and fn not in IGNORED_FILES:
             partials.append('./{0}/{1}'.format(folder, fn))
 
     return partials
@@ -83,7 +85,7 @@ def compose_vapi(onefile: bool, folder: str, div: str, out: str, deps: bool, fil
         logging.debug("Created folder {}".format(out))
 
     wrap_license = prepare_license(div = div)
-    mongoc_wrapped = prepare_partials(find_partials(folder = './{}/mongoc'.format(folder), suffix = '.vapi'), div = div)
+    mongoc_wrapped = prepare_partials(find_partials(folder = './{}/libmongoc'.format(folder), suffix = '.vapi'), div = div)
     bson_wrapped = prepare_partials(find_partials(folder = './{}/libbson'.format(folder), suffix = '.vapi'), div = div)
 
     joined = ''.join(mongoc_wrapped + bson_wrapped if onefile else mongoc_wrapped)

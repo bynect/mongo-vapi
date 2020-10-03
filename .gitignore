@@ -1,7 +1,12 @@
-.vscode/
-__pycache__/
-build*/
+#temp disable
+.github
 
-test_*
-libmongoc-1.0.*
-!vapi/*
+#ide
+.vs*/
+
+#python
+__pycache__/
+
+#builds
+vapi/*
+build*/
