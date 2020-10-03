@@ -1,6 +1,6 @@
 .DEFAULT: compose
-.SILENT: compose license clean help test-status test test-crud verbose build-crud build-status quiet
-.PHONY: compose license clean help test-status test test-crud verbose build-crud build-status quiet
+.SILENT:
+.PHONY: compose license clean help test verbose quiet example test-crud test-status example-hello
 
 compose: clean
 	echo "Generating VAPI file"
@@ -19,6 +19,7 @@ license:
 clean:
 	rm -rf vapi/**
 	rm -rf build/**
+	mkdir -p build 2> /dev/null
 
 help:
 	echo "help: this message"
@@ -28,19 +29,28 @@ help:
 	echo "test-crud: builds and start crud test"
 	echo "test-status: builds and start status test"
 	echo "clean: removes pycache and test"
+	echo "example: build and start usage example"
+	echo "compose.py options:\n"
+	python3 ./compose.py --help
 
 test: test-status
 
 test-crud: build-crud
-	./build/test_crud
+	./build/CrudTest
 
 test-status: build-status
-	./build/test_status
+	./build/StatusTest
+
+example: example-hello
+
+example-hello: build-hello
+	./build/HelloMongo
 
 build-crud: clean quiet
-	mkdir -p build 2> /dev/null
-	valac --pkg glib-2.0 --pkg posix --pkg libmongoc-1.0 --vapidir ./vapi -o ./build/test_crud test/crud.vala
+	valac --pkg glib-2.0 --pkg posix --pkg libmongoc-1.0 --vapidir ./vapi -o ./build/CrudTest test/CrudTest.vala
 
 build-status: clean quiet
-	mkdir -p build 2> /dev/null
-	valac --pkg glib-2.0 --pkg posix --pkg libmongoc-1.0 --vapidir ./vapi -o ./build/test_status test/status.vala
+	valac --pkg glib-2.0 --pkg posix --pkg libmongoc-1.0 --vapidir ./vapi -o ./build/StatusTest test/StatusTest.vala
+
+build-hello: clean quiet
+	valac --pkg glib-2.0 --pkg posix --pkg libmongoc-1.0 --vapidir ./vapi -o ./build/HelloMongo example/HelloMongo.vala

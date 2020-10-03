@@ -15,13 +15,13 @@ public class Database {
     public Cursor aggregate (Bson pipeline, Bson? opts, ReadPrefs read_prefs);
 
     [CCode (cname = "mongoc_database_command")]
-    public Cursor command (QueryFlags flags, uint32 skip, uint32 limit, uint32 batch_size, Bson command, Bson fields, ReadPrefs read_prefs);
+    public Cursor command (QueryFlags flags, uint32 skip, uint32 limit, uint32 batch_size, Bson command, Bson? fields, ReadPrefs? read_prefs);
 
     [CCode (cname = "mongoc_database_command_simple")]
-    public bool command_simple (Bson command, ReadPrefs read_prefs,Bson reply, BsonError? error);
+    public bool command_simple (Bson command, ReadPrefs? read_prefs,Bson? reply, BsonError? error);
 
     [CCode (cname = "mongoc_database_command_with_opts")]
-    public bool command_with_opts (Bson command, ReadPrefs read_prefs, Bson? opts, Bson reply, BsonError? error);
+    public bool command_with_opts (Bson command, ReadPrefs? read_prefs, Bson? opts, Bson? reply, BsonError? error);
 
     [CCode (cname = "mongoc_database_create_collection")]
     public Collection create_collection (string name, Bson opts, BsonError? error);

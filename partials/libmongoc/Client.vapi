@@ -24,13 +24,13 @@ public class Client {
     public Cursor command (string dbname, QueryFlags flags, uint32 skip, uint32 limit, uint32 batch_size, Bson query, Bson fields, ReadPrefs read_prefs);
     
     [CCode (cname = "mongoc_client_command_simple")]
-    public bool command_simple (string dbname, Bson command, ReadPrefs read_prefs, Bson reply, BsonError? error);
+    public bool command_simple (string dbname, Bson? command, ReadPrefs? read_prefs, Bson? reply, BsonError? error);
 
     [CCode (cname = "mongoc_client_command_simple_with_server_id")]
-    public bool command_simple_with_server_id (string dbname, Bson command, ReadPrefs read_prefs, uint32 server_id, Bson reply, BsonError? error);
+    public bool command_simple_with_server_id (string dbname, Bson command, ReadPrefs? read_prefs, uint32 server_id, Bson? reply, BsonError? error);
 
     [CCode (cname = "mongoc_client_command_with_opts")]
-    public bool command_with_opts (string dbname, Bson command, ReadPrefs read_prefs, Bson? opts, Bson reply, BsonError? error);
+    public bool command_with_opts (string dbname, Bson command, ReadPrefs? read_prefs, Bson? opts, Bson? reply, BsonError? error);
 
     [CCode (cname = "mongoc_client_enable_auto_encryption")]
     public bool enable_auto_encryption (AutoEncryptionOpts opts, BsonError? error);
