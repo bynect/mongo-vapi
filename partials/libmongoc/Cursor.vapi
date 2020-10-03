@@ -52,7 +52,7 @@ public class Cursor {
     public bool more ();
 
     [CCode (cname = "mongoc_cursor_next")]
-    public bool next (Bson bson);
+    public bool next (out Bson bson);
 
     [CCode (cname = "mongoc_cursor_set_batch_size")]
     public void set_batch_size (uint32 batch_size);

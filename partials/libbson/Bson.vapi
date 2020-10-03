@@ -19,7 +19,7 @@ public class Bson {
     public Bson.from_data (uint8 data, size_t length);
 
     [CCode (cname = "bson_new_from_json")]
-    public Bson.from_json (uint8 data, ssize_t length, BsonError? error);
+    public Bson.from_json (string data, int length, BsonError? error);
 
     [CCode (cname = "bson_sized_new")]
     public Bson.sized (size_t size);

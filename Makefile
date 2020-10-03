@@ -1,6 +1,6 @@
 .DEFAULT: compose
 .SILENT:
-.PHONY: compose license clean help test verbose quiet example test-crud test-status example-hello
+.PHONY: compose license clean help test verbose quiet example
 
 compose: clean
 	echo "Generating VAPI file"
@@ -17,26 +17,11 @@ license:
 	python3 ./compose.py --license
 
 clean:
+	mkdir -p build vapi
 	rm -rf vapi/**
 	rm -rf build/**
-	mkdir -p build 2> /dev/null
-
-help:
-	echo "help: this message"
-	echo "compose: generates VAPI file"
-	echo "license: ouptus license"
-	echo "build: builds test"
-	echo "test-crud: builds and start crud test"
-	echo "test-status: builds and start status test"
-	echo "clean: removes pycache and test"
-	echo "example: build and start usage example"
-	echo "compose.py options:\n"
-	python3 ./compose.py --help
 
 test: test-status
-
-test-crud: build-crud
-	./build/CrudTest
 
 test-status: build-status
 	./build/StatusTest
@@ -46,11 +31,26 @@ example: example-hello
 example-hello: build-hello
 	./build/HelloMongo
 
+example-crud: build-crud
+
 build-crud: clean quiet
-	valac --pkg glib-2.0 --pkg posix --pkg libmongoc-1.0 --vapidir ./vapi -o ./build/CrudTest test/CrudTest.vala
+	valac --pkg glib-2.0 --pkg posix --pkg libmongoc-1.0 --vapidir ./vapi -o ./build/Cruds example/Cruds.vala
 
 build-status: clean quiet
 	valac --pkg glib-2.0 --pkg posix --pkg libmongoc-1.0 --vapidir ./vapi -o ./build/StatusTest test/StatusTest.vala
 
 build-hello: clean quiet
 	valac --pkg glib-2.0 --pkg posix --pkg libmongoc-1.0 --vapidir ./vapi -o ./build/HelloMongo example/HelloMongo.vala
+
+help:
+	echo "help: display this help\n"
+	echo "compose: generates VAPI file from partials\n \
+	\tfor more info use python compose --help\n"
+	echo "license: display the project license\n"
+	echo "build-*: builds vala example/test\n \
+	\tpossible value: hello, status, crud\n"
+	echo "clean: removes pycache, composed vapi and executable\n"
+	echo "example-*: starts and build example\n \
+	\tpossible value: hello, crud\n"
+	echo "test-*: starts and build test\n \
+	\tpossible value: status\n"

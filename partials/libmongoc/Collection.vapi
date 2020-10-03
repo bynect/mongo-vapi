@@ -31,4 +31,13 @@ public class Collection {
     [CCode (cname = "mongoc_collection_insert_one")]
     public bool insert_one (Bson document, Bson? opts, Bson? reply, BsonError? error);
 
+    [CCode (cname = "mongoc_collection_update_one")]
+    public bool update_one (Bson document, Bson? selec, Bson? opts, Bson? reply, BsonError? error);
+
+    [CCode (cname = "mongoc_collection_delete_one")]
+    public bool delete_one (Bson selector, Bson? opts, Bson? reply, BsonError? error);
+
+    [CCode (cname = "mongoc_collection_find_with_opts")]
+    public Cursor find_with_opts (Bson? filter, Bson? opts, ReadPrefs? read_prefs);
+
 }
