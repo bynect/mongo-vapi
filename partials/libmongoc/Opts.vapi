@@ -3,11 +3,39 @@
  * mongoc_transaction_opt_t 
  */
 
-[CCode (cname = "mongoc_transaction_opt_t", free_function = "mongoc_transaction_opt_destroy")]
+[CCode (cname = "mongoc_transaction_opt_t", free_function = "mongoc_transaction_opts_destroy", copy_function = "mongoc_transaction_opts_clone")]
 [Compact]
 public class TransactionOpt {
-    //TODO
+    
+    //Constructor
+    [CCode (cname = "mongoc_transaction_opts_new")]
+    public TransactionOpt ();
+
     //Methods
+    [CCode (cname = "mongoc_transaction_opts_get_read_concern")]
+    public ReadConcern get_read_concern ();
+
+    [CCode (cname = "mongoc_transaction_opts_set_read_concern")]
+    public void set_read_concern (ReadConcern read_concern);
+
+    [CCode (cname = "mongoc_transaction_opts_get_write_concern")]
+    public WriteConcern get_write_concern ();
+
+    [CCode (cname = "mongoc_transaction_opts_set_write_concern")]
+    public void set_write_concern (WriteConcern write_concern);
+
+    [CCode (cname = "mongoc_transaction_opts_get_read_prefs")]
+    public ReadPrefs get_read_prefs ();
+
+    [CCode (cname = "mongoc_transaction_opts_set_read_prefs")]
+    public void set_read_prefs (ReadPrefs read_prefs);
+
+    [CCode (cname = "mongoc_transaction_opts_get_max_commit_time_ms")]
+    public int64 get_max_commit_time_ms ();
+
+    [CCode (cname = "mongoc_transaction_opts_set_max_commit_time_ms")]
+    public void set_max_commit_time_ms (int64 time);
+
 }
 
 /**

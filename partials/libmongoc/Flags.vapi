@@ -58,3 +58,26 @@ public enum UpdateFlags {
     MULTI_UPDATE,
     NO_VALIDATE
 }
+
+/**
+ * mongoc_delete_flags_t 
+ */
+
+[CCode (cname = "mongoc_delete_flags_t", cprefix = "MONGOC_DELETE_", has_type_id = false)]
+public enum DeleteFlags {
+    NONE,
+    SINGLE_REMOVE
+}
+
+/**
+ * mongoc_reply_flags_t 
+ */
+
+[CCode (cname = "mongoc_reply_flags_t", cprefix = "MONGOC_REPLY_", has_type_id = false)]
+public enum ReplyFlags {
+    NONE,
+    CURSOR_NOT_FOUND,
+    QUERY_FAILURE,
+    SHARD_CONFIG_STALE,
+    AWAIT_CAPABLE
+}

@@ -8,7 +8,7 @@ Vala bindings for the [Mongo C Driver](https://github.com/mongodb/mongo-c-driver
 
 ```sh
 #the vapi file will be generated in the ./vapi folder
-$ git clone https://github.com/bynect/mongo-vapi.git && cd mongo-vapi && make
+$ git clone https://github.com/bynect/mongo-vapi.git && cd mongo-vapi && make compose
 ```
 
 ## Examples
@@ -38,7 +38,7 @@ $ make test-status
 
 - Deprecated or next-to-deprecation features _won't be binded_.
 
-- If you need only the VAPI file, you can download it from the releases allegates.
+- If you need only the VAPI file, you can download it from the [releases allegates](https://github.com/bynect/mongo-vapi/releases).
 
 ## Changelog
 
@@ -47,4 +47,4 @@ $ make test-status
 ## License
 Licensed under MIT, you are free to use this VAPI. See LICENSE for more.
 
->If you want contribute you are welcome.
+>Any contribution is welcome.

@@ -1,12 +1,13 @@
 int main (string[] argv) {
 
-    print ("CRUD Operations example\n");
+    print ("CRUD Operations example\n\n");
 
     Mongo.init ();
 
     var error = Mongo.BsonError ();
     var client = new Mongo.Client ("mongodb://localhost:27017/?appname=crud-example");
     var collection = client.get_collection ("test", "test");
+
 
     //Insert document
     var oid = Mongo.BsonOid ();
@@ -24,7 +25,6 @@ int main (string[] argv) {
         print ("Could not insert document\n");
     }
 
-    Posix.sleep (1);
 
     //Find document
     var doc = new Mongo.Bson ();
@@ -37,7 +37,6 @@ int main (string[] argv) {
         stdout.printf ("Document found:\n%s\n\n", str);
     }
 
-    Posix.sleep (1);
 
     //Update document
     var update = new Mongo.Bson.from_json ("{\"$set\": {\"hello\": \"mongo\", \"updated\": true}}", -1, null);
@@ -49,7 +48,6 @@ int main (string[] argv) {
         print ("Could not update document\n");
     }
 
-    Posix.sleep (1);
 
     //Delete document
     var delete_query = new Mongo.Bson ();
