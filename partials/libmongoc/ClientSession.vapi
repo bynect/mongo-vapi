@@ -39,7 +39,6 @@ public class ClientSession {
     [CCode (cname = "mongoc_client_session_get_cluster_time")]
     public Bson get_cluster_time ();
 
-    //XXX: To test
     [CCode (cname = "mongoc_client_session_get_operation_time")]
     public void get_operation_time (uint32 timestamp, uint32 increment);
 

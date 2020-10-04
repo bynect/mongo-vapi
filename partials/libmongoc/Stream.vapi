@@ -7,6 +7,7 @@
 [Compact]
 public class Stream {
 
+    //Methods
     //FIXME
     [CCode (cname = "mongoc_stream_buffered_new")]
     public Stream (Stream base_stream, size_t buffer);

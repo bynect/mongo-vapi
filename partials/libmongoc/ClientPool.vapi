@@ -37,9 +37,9 @@ public class ClientPool {
     [CCode (cname = "client_pool_set_error_api")]
     public bool set_error_api (ClientPool client_pool, int32 version);
     
-    //TODO
-    //  [CCode (cname = "client_pool_set_ssl_opts")]
-    //  public void set_ssl_opts (ClientPool client_pool, SSLOpts opts);
+    //XXX
+    [CCode (cname = "client_pool_set_ssl_opts")]
+    public void set_ssl_opts (ClientPool client_pool, SSLOpts opts);
 
     [CCode (cname = "client_pool_try_pop")]
     public Client? try_pop (ClientPool client_pool);

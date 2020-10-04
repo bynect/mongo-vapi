@@ -14,6 +14,27 @@ public void init ();
 public void cleanup ();
 
 /**
+ * mongoc_rand_add 
+ */
+
+[CCode (cname = "mongoc_rand_add")]
+public void rand_add (void *buf, int num, double entropy);
+
+/**
+ * mongoc_rand_seed 
+ */
+
+[CCode (cname = "mongoc_rand_seed")]
+public void rand_seed (void *buf, int num);
+
+/**
+ * mongoc_rand_status 
+ */
+
+[CCode (cname = "mongoc_rand_status")]
+public int rand_status ();
+
+/**
  * mongoc_iovec_t
  */
 

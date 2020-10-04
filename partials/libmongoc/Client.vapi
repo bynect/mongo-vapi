@@ -15,11 +15,6 @@ public class Client {
     public Client.from_uri (Uri uri);
     
     //Methods
-    //  [CCode (cname = "mongoc_client_get_server_status")]
-    //  public bool get_server_status (ReadPrefs read_prefs, Bson reply, BsonError? error);
-
-
-    //Methods
     [CCode (cname = "mongoc_client_command")]
     public Cursor command (string dbname, QueryFlags flags, uint32 skip, uint32 limit, uint32 batch_size, Bson query, Bson fields, ReadPrefs read_prefs);
     
@@ -110,7 +105,7 @@ public class Client {
     public void set_ssl_opts (SSLOpts opts);
 
     //TODO: Implement
-    //  [CCode (cname = "mongoc_client_")]
+    //  [CCode (cname = "mongoc_client_set_stream_initiator")]
     //  public void client_set_stream_initiator (StreamInitiator initiator);
 
     [CCode (cname = "mongoc_client_set_write_concern")]
@@ -124,7 +119,5 @@ public class Client {
 
     [CCode (cname = "mongoc_client_write_command_with_opts")]
     public bool write_command_with_opts (string dbname, Bson command, ReadPrefs read_prefs, Bson? opts, Bson reply, BsonError? error);
-
-
 
 }

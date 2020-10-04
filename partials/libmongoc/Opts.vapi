@@ -118,14 +118,47 @@ public class AutoEncryptionOpts {
  * mongoc_index_opt_t 
  */
 
-[CCode (cname = "mongoc_index_opt_t")]
+[CCode (cname = "mongoc_index_opt_t", has_type_id = false)]
 public struct IndexOpt {
 
+    //Methods
     //FIXME
     [CCode (cname = "mongoc_index_opt_get_default")]
     public static IndexOpt get_default ();
 
     [CCode (cname = "mongoc_index_opt_init")]
+    public void init ();
+
+}
+
+/**
+ * mongoc_index_opt_wt_t 
+ */
+
+[CCode (cname = "mongoc_index_opt_wt_t", has_type_id = false)]
+public struct IndexOptWT {
+
+    //Methods
+    [CCode (cname = "mongoc_index_opt_wt_get_default")]
+    public static IndexOptWT get_default ();
+
+    [CCode (cname = "mongoc_index_opt_wt_init")]
+    public void init ();
+
+}
+
+/**
+ * mongoc_index_opt_geo_t 
+ */
+
+[CCode (cname = "mongoc_index_opt_geo_t", has_type_id = false)]
+public struct IndexOptGEO {
+
+    //Methods
+    [CCode (cname = "mongoc_index_opt_geo_get_default")]
+    public static IndexOptGEO get_default ();
+
+    [CCode (cname = "mongoc_index_opt_geo_init")]
     public void init ();
 
 }
