@@ -32,6 +32,10 @@ example-hello: build-hello
 	./build/HelloMongo
 
 example-crud: build-crud
+	./build/Cruds
+
+example-bcon: build-bcon
+	./build/BconDoc
 
 build-crud: clean quiet
 	valac --pkg glib-2.0 --pkg posix --pkg libmongoc-1.0 --vapidir ./vapi -o ./build/Cruds example/Cruds.vala
@@ -41,6 +45,9 @@ build-status: clean quiet
 
 build-hello: clean quiet
 	valac --pkg glib-2.0 --pkg posix --pkg libmongoc-1.0 --vapidir ./vapi -o ./build/HelloMongo example/HelloMongo.vala
+
+build-bcon: clean quiet
+	valac --pkg glib-2.0 --pkg posix --pkg libmongoc-1.0 --vapidir ./vapi -o ./build/BconDoc example/BconDoc.vala
 
 help:
 	echo "help: display this help\n"

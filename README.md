@@ -2,7 +2,7 @@
 
 Vala bindings for the [Mongo C Driver](https://github.com/mongodb/mongo-c-driver "mongoc driver").
 
-**Still work in progess, not ready for CRUDs.**
+**Still work in progess, not ready for Production.**
 
 ## Generate VAPI file
 
@@ -11,14 +11,23 @@ Vala bindings for the [Mongo C Driver](https://github.com/mongodb/mongo-c-driver
 $ git clone https://github.com/bynect/mongo-vapi.git && cd mongo-vapi && make
 ```
 
+## Examples
+```sh
+#hello mongo example
+$ make example-hello
+
+#basic crud operations to local database
+$ make example-crud
+
+#bcon example
+$ make example-bcon
+```
+
 ## Tests
 
 ```sh
 #check connection to local database
 $ make test-status
-
-#make basic crud operation
-$ make test-crud
 ```
 
 ## Notes
@@ -31,7 +40,9 @@ $ make test-crud
 
 - If you need only the VAPI file, you can download it from the releases allegates or get the last generated `.vapi` file in the [`vapi` folder](./vapi/).
 
-- libbson bindings doesn't support BCON.
+## Changelog
+
+- Added support for BCON notation.
 
 ## License
 Licensed under MIT, you are free to use this VAPI. See LICENSE for more.

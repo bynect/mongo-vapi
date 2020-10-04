@@ -8,6 +8,6 @@
 __pycache__/
 
 #builds
-vapi/*
+vapi/
 build*/
 *.c

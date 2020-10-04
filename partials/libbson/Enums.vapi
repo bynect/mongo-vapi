@@ -45,6 +45,45 @@ public enum BsonSubtype {
 }
 
 /**
+ * bcon_type_t
+ */
+
+[CCode (cname = "bcon_type_t", has_type_id = false, cprefix = "BCON_TYPE_")]
+public enum BconType {
+    UTF8,
+    DOUBLE,
+    DOCUMENT,
+    ARRAY,
+    BIN,
+    UNDEFINED,
+    OID,
+    BOOL,
+    DATE_TIME,
+    NULL,
+    REGEX,
+    DBPOINTER,
+    CODE,
+    SYMBOL,
+    CODEWSCOPE,
+    INT32,
+    TIMESTAMP,
+    INT64,
+    DECIMAL128,
+    MAXKEY,
+    MINKEY,
+    BCON,
+    ARRAY_START,
+    ARRAY_END,
+    DOC_START,
+    DOC_END,
+    END,
+    RAW,
+    SKIP,
+    ITER,
+    ERROR
+}
+
+/**
  * bson_validate_flags_t
  */
 

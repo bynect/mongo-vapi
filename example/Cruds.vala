@@ -18,7 +18,7 @@ int main (string[] argv) {
     var insert_reply = new Mongo.Bson ();
 
     if (collection.insert_one (document, null, insert_reply, error)) {
-        stdout.printf ("Document inserted:\n%s\n", insert_reply.as_canonical_extended_json (null));
+        stdout.printf ("Document inserted:\n%s\n\n", insert_reply.as_canonical_extended_json (null));
         
     } else {
         print ("Could not insert document\n");
@@ -34,7 +34,7 @@ int main (string[] argv) {
     
     while (cursor.next (out doc)) {
         var str = doc.as_canonical_extended_json (null);
-        stdout.printf ("Document found:\n%s\n", str);
+        stdout.printf ("Document found:\n%s\n\n", str);
     }
 
     Posix.sleep (1);
@@ -44,7 +44,7 @@ int main (string[] argv) {
     var update_reply = new Mongo.Bson ();
 
     if (collection.update_one (query, update, null, update_reply, error)) {
-        stdout.printf ("Document updated:\n%s\n", update_reply.as_canonical_extended_json (null));
+        stdout.printf ("Document updated:\n%s\n\n", update_reply.as_canonical_extended_json (null));
     } else {
         print ("Could not update document\n");
     }
@@ -57,7 +57,7 @@ int main (string[] argv) {
     var delete_reply = new Mongo.Bson ();
 
     if (collection.delete_one (delete_query, null, delete_reply, error)) {
-        stdout.printf ("Document deleted:\n%s\n", delete_reply.as_canonical_extended_json (null));
+        stdout.printf ("Document deleted:\n%s\n\n", delete_reply.as_canonical_extended_json (null));
     } else {
         print ("Could not delete document\n");
     }
