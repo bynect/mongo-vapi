@@ -2,7 +2,7 @@
 
 Vala bindings for the [Mongo C Driver](https://github.com/mongodb/mongo-c-driver "mongoc driver").
 
-**Still work in progess, not ready for Production.**
+**Still work in progess, some bindings are still not tested.**
 
 ## Generate VAPI file
 
