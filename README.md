@@ -32,13 +32,13 @@ $ make test-status
 
 ## Notes
 
->Because the codebase to bind is fairly big, the vapis are divided in partials file and a composed file can be easily generated with the included script.
+>Because the codebase to bind is fairly big, the vapi file is divided in partials file. The file itself can be easily generated with the included Python script/ Makefile.
 
 - While the vast majority of the methods and classes have the same or a very similar name to the C counterpart, some of the names maybe a little tweaked to be more Vala-friendly.
 
-- **Deprecated** or **next-to-deprecation** features of mongoc _will not binded_.
+- Deprecated or next-to-deprecation features _won't be binded_.
 
-- If you need only the VAPI file, you can download it from the releases allegates or get the last generated `.vapi` file in the [`vapi` folder](./vapi/).
+- If you need only the VAPI file, you can download it from the releases allegates.
 
 ## Changelog
 
