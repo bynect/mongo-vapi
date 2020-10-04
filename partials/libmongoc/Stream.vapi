@@ -70,3 +70,61 @@ public class ChangeStream {
     public bool error_document (BsonError? error, Bson reply);
 
 }
+
+/**
+ * mongoc_stream_buffered_t 
+ */
+
+[CCode (cname = "mongoc_stream_buffered_t", has_type_id = false)]
+public struct StreamBuffered {
+
+    //Methods
+    [CCode (cname = "mongoc_stream_buffered_new")]
+    public static Stream? new (Stream base_stream, size_t buffer_size);
+
+}
+
+/**
+ * mongoc_stream_file_t 
+ */
+
+[CCode (cname = "mongoc_stream_file_t", has_type_id = false)]
+public struct StreamFile {
+
+    //Methods
+    [CCode (cname = "mongoc_stream_file_new")]
+    public static Stream? new (int fd);
+
+    [CCode (cname = "mongoc_stream_file_new_for_path")]
+    public static Stream? new_for_path (string path, int flags, int mode);
+
+    //FIXME
+    [CCode (cname = "mongoc_stream_file_get_fd")]
+    public int get_fd ();
+    
+}
+
+/**
+ * mongoc_stream_socket_t 
+ */
+
+[CCode (cname = "mongoc_stream_socket_t", has_type_id = false)]
+public struct StreamSocket {
+
+    //Methods
+    [CCode (cname = "mongoc_stream_socket_new")]
+    public static Stream? new (Socket sock);
+
+    [CCode (cname = "mongoc_stream_socket_get_socket")]
+    public Socket get_socket ();
+    
+}
+
+/**
+ * mongoc_stream_tls_t 
+ */
+
+[CCode (cname = "mongoc_stream_tls_t", has_type_id = false)]
+public struct StreamTLS {
+    
+}

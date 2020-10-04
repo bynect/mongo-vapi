@@ -38,7 +38,7 @@ public int rand_status ();
  * mongoc_iovec_t
  */
 
-[CCode (cname = "mongoc_iovec_t")]
+[CCode (cname = "mongoc_iovec_t", has_type_id = false)]
 public struct IOVec {
 
 }
@@ -47,7 +47,7 @@ public struct IOVec {
 * mongoc_host_list_t 
 */
 
-[CCode (cname = "mongoc_host_list_t")]
+[CCode (cname = "mongoc_host_list_t", has_type_id = false)]
 public struct HostList {
 
 }
@@ -77,6 +77,28 @@ public class ServerDescription {
     public int64 round_trip_time ();
 
     [CCode (cname = "mongoc_server_description_type")]
+    public string type ();
+
+}
+
+/**
+ * mongoc_topology_description_t 
+ */
+
+[CCode (cname = "mongoc_topology_description_t", has_type_id = false)]
+public struct TopologyDescription {
+
+    //Methods
+    [CCode (cname = "mongoc_topology_description_get_servers")]
+    public ServerDescription[]? get_servers (size_t n);
+
+    [CCode (cname = "mongoc_topology_description_has_readable_server")]
+    public bool has_readable_server (ReadPrefs? prefs);
+
+    [CCode (cname = "mongoc_topology_description_has_writable_server")]
+    public bool has_writable_server ();
+
+    [CCode (cname = "mongoc_topology_description_type")]
     public string type ();
 
 }
