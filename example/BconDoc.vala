@@ -45,6 +45,7 @@ int main (string[] argv) {
         "]"
     );
     
+    //Indentation made with json-glib-1.0
     Json.Generator generator = new Json.Generator ();
     var root = Json.from_string (grace_hopper.as_canonical_extended_json (null));
     generator.set_root (root);
@@ -52,7 +53,7 @@ int main (string[] argv) {
     generator.set_indent_char (' ');
     generator.set_pretty (true);
 
-    stdout.printf("Example 2 (indented using json-glib):\n%s\n", generator.to_data (null));
+    stdout.printf("Example 2 (indented):\n%s\n", generator.to_data (null));
 
     return 0;
 }
