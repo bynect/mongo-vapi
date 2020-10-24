@@ -22,11 +22,13 @@ except ImportError:
 
 
 #composing
-HEADER = '\n[CCode (cheader_filename = "{0}", has_type_id = false, cprefix = "mongoc_", lower_case_cprefix = "mongoc_")]\nnamespace {1} {{'
+HEADER = '\n[CCode ({0})]\nnamespace {1} {{'
+
+HEADER_OPTION = 'cheader_filename = "{0}", has_type_id = false, cprefix = "{1}", lower_case_cprefix = "{1}"'
 
 DEPENDENCIES = ['posix']
 
-IGNORED_FILES = ['Callbacks.vapi']
+IGNORED_FILES = ['APMCallbacks.vapi']
 
 
 def prepare_license(div = '', wrapped = True):
@@ -90,7 +92,8 @@ def compose_vapi(onefile: bool, folder: str, div: str, out: str, deps: bool, fil
 
     joined = ''.join(mongoc_wrapped + bson_wrapped if onefile else mongoc_wrapped)
 
-    formatted = '{0}\n{1}\n{2}\n}}\n'.format(wrap_license, HEADER.format('mongoc.h,bson.h', 'Mongo'), joined)
+    if onefile:
+        formatted = '{0}\n{1}\n{2}\n}}\n'.format(wrap_license, HEADER.format(HEADER_OPTION.format('mongoc.h,bson.h','mongoc_'), 'Mongo'), joined)
 
     with open('{0}/{1}.vapi'.format(out, filename), 'w') as f:
         f.write(formatted)
