@@ -9,10 +9,16 @@ int main (string[] argv) {
     Mongo.Uri uri;
     Mongo.Database db;
     Mongo.Collection coll;
-    Mongo.Bson command, reply, insert;
-    Mongo.BsonError error = Mongo.BsonError ();
     string str;
     bool retval;
+
+    #if SEPARATED_VAPI
+        Bson.Bson command, reply, insert;
+        Bson.BsonError error = Bson.BsonError ();
+    #else
+        Mongo.Bson command, reply, insert;
+        Mongo.BsonError error = Mongo.BsonError ();
+    #endif
 
     Mongo.init ();
 
@@ -27,9 +33,14 @@ int main (string[] argv) {
     db = client.get_database ("test");
     coll = client.get_collection ("test", "test");
 
-    reply = new Mongo.Bson ();
+    #if SEPARATED_VAPI
+        reply = new Bson.Bson ();
+        command = new Bson.Bson ();
+    #else
+        reply = new Mongo.Bson ();
+        command = new Mongo.Bson ();
+    #endif
 
-    command = new Mongo.Bson ();
     command.append_int32 ("ping", -1, 1);
 
     retval = client.command_simple ("admin", command, null, reply, error);
@@ -38,7 +49,12 @@ int main (string[] argv) {
     stdout.printf ("%s\n", str);
 
 
-    insert = new Mongo.Bson ();
+    #if SEPARATED_VAPI
+        insert = new Bson.Bson ();
+    #else
+        insert = new Mongo.Bson ();
+    #endif
+
     insert.append_utf8 ("hello", -1, "world", -1);
 
     coll.insert_one (insert, null, null, error);

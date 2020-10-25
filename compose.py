@@ -4,7 +4,11 @@
 import os
 import argparse
 import logging
+import re
+import json
 
+
+#indentation
 try:
     from textwrap import indent
 
@@ -17,11 +21,9 @@ except ImportError:
                 yield (prefix + line if predicate(line) else line)
 
         return ''.join(prefixed_lines())
-        
-    logging.debug("failed to import indent from textwrap, using fallback function")
 
 
-#composing
+#vapi headers
 HEADER = '\n[CCode ({0})]\nnamespace {1} {{'
 
 HEADER_OPTION = 'cheader_filename = "{0}", has_type_id = false, cprefix = "{1}", lower_case_cprefix = "{1}"'
@@ -31,17 +33,18 @@ DEPENDENCIES = ['posix']
 IGNORED_FILES = ['APMCallbacks.vapi']
 
 
-def prepare_license(div = '', wrapped = True):
+#helper functions
+def prepare_license(div = '', wrapped = True, filename = 'LICENSE'):
 
     license_header = 'Mongo C Driver bindings for Vala\n'
 
-    with open('./LICENSE', 'r') as f:
+    with open('./{}'.format(filename), 'r') as f:
         raw_license = f.read()
         logging.debug('Reading LICENSE file')
 
     if wrapped:
-        wrap_license = indent("{}\n{}".format(license_header, raw_license), div)
-        return '/*\n{}\n*/'.format(wrap_license)
+        license_wrapped = indent("{}\n{}".format(license_header, raw_license), div)
+        return '/*\n{}\n*/'.format(license_wrapped)
 
     return "{}\n{}".format(license_header, raw_license)
 
@@ -71,11 +74,7 @@ def prepare_partials(partials_path, div):
 
 def prepare_deps(deps: list):
 
-    out = ''
-    for dep in deps:
-        out += '{}\n'.format(dep)
-
-    return out
+    return ''.join(deps)
 
 
 def compose_vapi(onefile: bool, folder: str, div: str, out: str, deps: bool, filename: str = 'libmongoc-1.0'):
@@ -86,23 +85,61 @@ def compose_vapi(onefile: bool, folder: str, div: str, out: str, deps: bool, fil
         os.makedirs(out)
         logging.debug("Created folder {}".format(out))
 
-    wrap_license = prepare_license(div = div)
+    license_wrapped = prepare_license(div = div)
     mongoc_wrapped = prepare_partials(find_partials(folder = './{}/libmongoc'.format(folder), suffix = '.vapi'), div = div)
     bson_wrapped = prepare_partials(find_partials(folder = './{}/libbson'.format(folder), suffix = '.vapi'), div = div)
 
-    joined = ''.join(mongoc_wrapped + bson_wrapped if onefile else mongoc_wrapped)
+    if not onefile:
+        mongoc_joined = ''.join(mongoc_wrapped)
+        bson_joined = ''.join(bson_wrapped)
 
-    if onefile:
-        formatted = '{0}\n{1}\n{2}\n}}\n'.format(wrap_license, HEADER.format(HEADER_OPTION.format('mongoc.h,bson.h','mongoc_'), 'Mongo'), joined)
+        mongoc_header = HEADER.format(HEADER_OPTION.format('mongoc.h','mongoc_'), 'Mongo')
+        bson_header = HEADER.format(HEADER_OPTION.format('bson.h','bson_'), 'Bson')
 
-    with open('{0}/{1}.vapi'.format(out, filename), 'w') as f:
-        f.write(formatted)
-        logging.debug('Writing on {0}/{1}.vapi'.format(out, filename))
+        bson_re = re.compile(r"(?:\b)Bson(?!(\.[\d\w]*)|([\d\w]*\b\ [\(\{]))")
+
+        mongoc_formatted = '{0}\n{1}\n{2}\n}}\n'.format(
+            license_wrapped,
+            mongoc_header,
+            bson_re.sub("Bson.Bson", mongoc_joined)
+        )
+
+        bson_formatted = '{0}\n{1}\n{2}\n}}\n'.format(
+            license_wrapped,
+            bson_header,
+            re.sub(r"\bCollection\b", "Mongo.Collection", bson_joined)
+        )
+
+        with open('{0}/{1}.vapi'.format(out, filename), 'w') as f:
+            f.write(mongoc_formatted)
+            logging.debug('Writing on {0}/{1}.vapi'.format(out, filename))
+
+        filename2 = 'libbson-1.0'
+
+        with open('{0}/{1}.vapi'.format(out, filename2), 'w') as f:
+            f.write(bson_formatted)
+            logging.debug('Writing on {0}/{1}.vapi'.format(out, filename2))
+
+    else:
+        joined = ''.join(mongoc_wrapped + bson_wrapped)
+        formatted = '{0}\n{1}\n{2}\n}}\n'.format(
+            license_wrapped,
+            HEADER.format(HEADER_OPTION.format('mongoc.h,bson.h','mongoc_'), 'Mongo'),
+            joined
+        )
+
+        with open('{0}/{1}.vapi'.format(out, filename), 'w') as f:
+            f.write(formatted)
+            logging.debug('Writing on {0}/{1}.vapi'.format(out, filename))
 
     if deps:
         with open('{0}/{1}.deps'.format(out, filename), 'w') as f:
             f.write(prepare_deps(DEPENDENCIES))
             logging.debug('Writing on {0}/{1}.deps'.format(out, filename))
+        if not onefile:
+            with open('{0}/{1}.deps'.format(out, filename2), 'w') as f:
+                f.write(prepare_deps(DEPENDENCIES))
+                logging.debug('Writing on {0}/{1}.deps'.format(out, filename))
 
 
 #arg parsing
@@ -119,7 +156,7 @@ parser.add_argument('-v', '--verbose', dest = 'verbose', action = 'store_true', 
 parser.add_argument('-q', '--quiet', dest = 'quiet', action = 'store_true', help = 'Activate quiet mode [Error]')
 parser.add_argument('-l', '--license', dest = 'license', action = 'store_true', help = 'Show license')
 parser.add_argument('-i', '--indent', dest = 'indent', type = int, action = 'store', default = 4, help = 'Specify indentation, default 4 spaces')
-parser.add_argument('--onefile', dest = 'onefile', action = 'store_true', default = True, help = 'Specify if the ouput will be one file')
+parser.add_argument('--onefile', dest = 'onefile', action = 'store_true', help = 'Specify if the ouput will be one file')
 
 args = parser.parse_args()
 
@@ -129,11 +166,12 @@ def set_verbosity(verbose, quiet):
     if verbose and not quiet:
         logging.basicConfig(level=logging.DEBUG, format='%(message)s')
         logging.debug("Verbose mode setted")
-    
+
     elif quiet and not verbose:
         logging.basicConfig(level=logging.ERROR, format='%(message)s')
-    
-    logging.basicConfig(level=logging.INFO, format='%(message)s')
+
+    else:
+        logging.basicConfig(level=logging.INFO, format='%(message)s')
 
 
 set_verbosity(args.verbose, args.quiet)
@@ -143,11 +181,17 @@ if args.license:
 
 elif args.out and args.folder:
     try:
-        compose_vapi(onefile = args.onefile, folder = args.folder, div = ' ' * args.indent, out = args.out, deps = args.deps)
+        kwargs = {"onefile": args.onefile, "folder": args.folder, "div": ' ' * args.indent, "out": args.out, "deps": args.deps}
+        logging.debug(json.dumps(kwargs, indent = ' ' * args.indent))
+        compose_vapi(**kwargs)
     except:
         logging.critical("An error occurred, please retry", exc_info = True if args.verbose else False)
+        raise
     else:
-        print('Done. VAPI generated in `{}`'.format(args.out))
+        print('Done. VAPI generated in ./{} [{}]'.format(args.out, 'onefile' if args.onefile else 'separated'))
     finally:
         logging.info('\nLicensed under MIT, see LICENSE or `make license`')
         logging.info('Do `python3 compose.py -h` to see usage options')
+
+else:
+    parser.print_help(sys.stderr)

@@ -1,8 +1,18 @@
+/*
+ * Prints the local MongoDB instance status.
+ */
+
 public void print_status (Mongo.Client client) {
 
     var prefs = new Mongo.ReadPrefs (Mongo.ReadMode.PRIMARY);
-    var res = new Mongo.Bson ();
-    var err = Mongo.BsonError ();
+
+    #if SEPARATED_VAPI
+        var res = new Bson.Bson ();
+        var err = Bson.BsonError ();
+    #else
+        var res = new Mongo.Bson ();
+        var err = Mongo.BsonError ();
+    #endif
 
     var status = client.get_server_status (prefs, res, err);
 
@@ -23,7 +33,7 @@ int main (string[] argv) {
     var client = new Mongo.Client.from_uri (uri);
 
     print_status (client);
-    
+
     Mongo.cleanup ();//Mongo C Driver internal cleanup
 
     return 0;
