@@ -14,13 +14,14 @@ $ git clone https://github.com/bynect/mongo-vapi.git && cd mongo-vapi && make co
 #### Generate one file
 You can generate a single file containing both `libbson` and `libmongoc` bindings living under the _Mongo_ namespace by using this command:
 ```sh
-$ make onefile
+$ make compose
 ```
 
-#### Generate splitted file
+#### Generate separated file
 You can generate also generate two separated file containing `libbson` and `libmongoc` bindings living under the _Bson_ and _Mongo_ namespace respectively.
 ```sh
-$ make compose
+#set the variable in line or export it
+$ SEPARATED_VAPI= make compose
 ```
 __If you want to run tests or examples using two different file (separated option), you have to set the `SEPARATED_VAPI` environmental variable.__
 
