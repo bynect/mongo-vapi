@@ -1,8 +1,6 @@
 # MongoC Vapi
 
-Vala bindings for the [Mongo C Driver](https://github.com/mongodb/mongo-c-driver "mongoc driver").
-
-_Still work in progess, some bindings are still not tested._
+Vala bindings for the [Mongo C Driver](https://github.com/mongodb/mongo-c-driver "mongo-c-driver").
 
 ## Generate VAPI file
 #### Oneliner
@@ -82,6 +80,8 @@ Also see [TODO.md](./TODO.md).
 
 
 ## License
-Licensed under MIT, you are free to use this VAPI. See LICENSE for more.
+Copyright 2020 @bynect
 
-Contributions are welcome.
+This is free and open source software.
+You can use/modify/redistribute it under the terms of the MIT license.
+See docs/LICENSE for for more details.
