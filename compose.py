@@ -158,7 +158,7 @@ parser.add_argument('-l', '--license', dest = 'license', action = 'store_true', 
 parser.add_argument('-i', '--indent', dest = 'indent', type = int, action = 'store', default = 4, help = 'Specify indentation, default 4 spaces')
 parser.add_argument('--onefile', dest = 'onefile', action = 'store_true', help = 'Specify if the ouput will be one file')
 
-args = parser.parse_args()
+args, _ = parser.parse_known_args()
 
 
 def set_verbosity(verbose, quiet):

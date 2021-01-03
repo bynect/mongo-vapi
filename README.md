@@ -61,6 +61,14 @@ $ python3 compose.py --help #or -h
 ```
 
 
+## Build with Meson
+You can use Meson alternatively to make.
+```sh
+# add --onefile=false for separated vapis
+$ meson build
+```
+
+
 ## Notes
 * Because the codebase to bind is fairly big, the vapi file is divided in partials file. The file itself can be easily generated with the included Python script / Makefile.
 
@@ -72,6 +80,7 @@ $ python3 compose.py --help #or -h
 
 
 ## Changelog
+* Add a simple meson script.
 * Add support for separated vapis for `libbson` and `libmongoc`.
 * Add support for BCON notation.
 * Add support for Crud operation.

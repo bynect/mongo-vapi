@@ -1,0 +1,13 @@
+option(
+    'verbose',
+    type : 'boolean',
+    value : false,
+    description : 'Set compose.py verbose output.'
+)
+
+option(
+    'onefile',
+    type : 'boolean',
+    value : true,
+    description : 'Set compose.py single file output.'
+)
