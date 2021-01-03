@@ -6,7 +6,7 @@ import argparse
 import logging
 import re
 import json
-
+import sys
 
 #indentation
 try:
@@ -186,7 +186,11 @@ elif args.out and args.folder:
         compose_vapi(**kwargs)
     except:
         logging.critical("An error occurred, please retry", exc_info = True if args.verbose else False)
-        raise
+
+        if args.verbose:
+            raise
+        else:
+            sys.exit(1)
     else:
         print('Done. VAPI generated in ./{} [{}]'.format(args.out, 'onefile' if args.onefile else 'separated'))
     finally:
@@ -195,3 +199,5 @@ elif args.out and args.folder:
 
 else:
     parser.print_help(sys.stderr)
+
+sys.exit(0)

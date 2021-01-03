@@ -16,8 +16,8 @@ ONEFILE := $${SEPARATED_VAPI-"--onefile"}
 
 clean:
 	mkdir -p $(BUILD_DIR) $(VAPI_DIR) \
-	&& rm -rf vapi/** \
-	&& rm -rf build/**
+	&& rm -rf vapi/* \
+	&& rm -rf build/*
 
 compose: clean
 	python3 ./compose.py $(ONEFILE)
