@@ -13,11 +13,11 @@ public class Client {
 
     [CCode (cname = "mongoc_client_new_from_uri")]
     public Client.from_uri (Uri uri);
-    
+
     //Methods
     [CCode (cname = "mongoc_client_command")]
     public Cursor command (string dbname, QueryFlags flags, uint32 skip, uint32 limit, uint32 batch_size, Bson query, Bson fields, ReadPrefs read_prefs);
-    
+
     [CCode (cname = "mongoc_client_command_simple")]
     public bool command_simple (string dbname, Bson? command, ReadPrefs? read_prefs, Bson? reply, BsonError? error);
 
@@ -59,7 +59,7 @@ public class Client {
 
     [CCode (cname = "mongoc_client_get_server_description")]
     public ServerDescription get_server_description (uint32 server_id);
-    
+
     //FIXME
     [CCode (cname = "mongoc_client_get_server_descriptions", array_length_type = "size_t")]
     public ServerDescription[] get_server_descriptions (size_t n);
@@ -84,10 +84,9 @@ public class Client {
 
     [CCode (cname = "mongoc_client_select_server")]
     public ServerDescription select_server (bool for_writes, ReadPrefs? read_prefs, BsonError? error);
-    
-    //TODO
-    //  [CCode (cname = "mongoc_client_set_apm_callbacks")]
-    //  public bool set_apm_callbacks (APMCallbacks callbacks);
+
+    [CCode (cname = "mongoc_client_set_apm_callbacks", simple_generics = true)]
+    public bool set_apm_callbacks<T> (APMCallbacks callbacks, T? context = null);
 
     [CCode (cname = "mongoc_client_set_appname")]
     public bool set_appname (string name);
@@ -104,7 +103,7 @@ public class Client {
     [CCode (cname = "mongoc_client_set_ssl_opts")]
     public void set_ssl_opts (SSLOpts opts);
 
-    //TODO: Implement
+    //TODO
     //  [CCode (cname = "mongoc_client_set_stream_initiator")]
     //  public void client_set_stream_initiator (StreamInitiator initiator);
 

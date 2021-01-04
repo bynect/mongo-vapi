@@ -30,7 +30,7 @@ HEADER_OPTION = 'cheader_filename = "{0}", has_type_id = false, cprefix = "{1}",
 
 DEPENDENCIES = ['posix']
 
-IGNORED_FILES = ['APMCallbacks.vapi']
+IGNORED_FILES = []
 
 
 #helper functions
@@ -186,11 +186,8 @@ elif args.out and args.folder:
         compose_vapi(**kwargs)
     except:
         logging.critical("An error occurred, please retry", exc_info = True if args.verbose else False)
+        sys.exit(1)
 
-        if args.verbose:
-            raise
-        else:
-            sys.exit(1)
     else:
         print('Done. VAPI generated in ./{} [{}]'.format(args.out, 'onefile' if args.onefile else 'separated'))
     finally:

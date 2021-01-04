@@ -31,8 +31,10 @@ Mongo (libmongoc) :
   * [x] Database
   * [x] Collection
   * [x] BulkOperations (?)
-  * [ ] Callbacks
+  * [x] APMCallbacks (?)
   * [ ] Transactions
   * [x] Helper methods (?)
 
-`?` : To test and/or not fully implemented
+(?) : To test and/or not fully implemented
+
+(*) : Wildcard types (i.e. different options)
