@@ -72,8 +72,10 @@ Avaible options (see meson_options.txt):
 * `-Dexample`:  Build samples. Default to true.
 
 ```sh
-# add -Donefile=false for separated vapis
+#add -Donefile=false for separated vapis
 $ meson build
+#run ninja from the build directory
+$ ninja -C build
 ```
 
 
