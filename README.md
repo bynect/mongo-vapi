@@ -66,10 +66,10 @@ __If you want to run tests or examples using two different file (separated optio
 You can use Meson as an alternative build method to make.
 
 Avaible options (see meson_options.txt):
-* `-Donefile`:   Default to true.
-* `-Dverbose`:  Default to false.
-* `-Dtest`:   Build test. Default to true.
-* `-Dexample`:  Build samples. Default to true.
+* `-Donefile`: Generate a single file and namespace. Default to true.
+* `-Dverbose`: Set verbosity. Default to false.
+* `-Dtest`: Build test. Default to true.
+* `-Dexample`: Build samples. Default to true.
 
 ```sh
 #add -Donefile=false for separated vapis
@@ -93,6 +93,25 @@ $ python3 compose.py -h
 ```
 
 
+## Usage
+To use this bindings you have to add the following arguments to `valac`:
+* `--pkg libmongoc-1.0`: This links libmongoc to your Vala application.
+* `--pkg libbson-1.0`: Add this only if you have generated separated vapis.
+* `--vapidir X`: _X_ is the directory where the generated files are stored.
+* `--pkg posix`: Add only if you didn't included the `.deps` file in the vapidir.
+
+
+If you are using Meson you can add the following dependencies:
+* dependency('libmongoc-1.0')
+* dependency('libbson-1.0')
+
+Also you need to add the `vapidir` option and the `--pkg` option for posix (if not included in the vapidir), like this:
+```meson
+add_project_arguments(['--vapidir', X, '--pkg', 'posix'], language: 'vala')
+```
+_X_ is the directory where the generated files are stored.
+
+
 ## Dependencies
 * [`libmongoc-1.0`](http://mongoc.org/libmongoc/current/installing.html): the binded library
 * `libbson-1.0`: installed with libmongoc, used explicitly if vapis are separated
@@ -111,6 +130,8 @@ $ python3 compose.py -h
 * If you need only the VAPI file, you can download it from the [releases allegates](https://github.com/bynect/mongo-vapi/releases). Generating by yourself is probably better though.
 
 * Test and samples require a running instance of mongodb (`mongod`).
+
+* I am not sure if `--pkg posix` is required always.
 
 
 ## Changelog

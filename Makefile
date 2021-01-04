@@ -11,12 +11,11 @@ SEPARATED_PKG = $${SEPARATED_VAPI+ --pkg libbson-1.0}
 ONEFILE := $${SEPARATED_VAPI- --onefile}
 
 
-PACKAGES = --pkg glib-2.0 --pkg posix --pkg libmongoc-1.0 $(SEPARATED_PKG)
+PACKAGES = --pkg libmongoc-1.0 $(SEPARATED_PKG)
 DEFINES = $(SEPARATED_MACRO)
 
 
 compose: clean
-	echo $(SEPARATED_VAPI)
 	python3 ./compose.py $(ONEFILE)
 
 verbose: clean
@@ -53,7 +52,7 @@ build-hello: clean quiet
 	-o ./$(BUILD_DIR)/HelloMongo $(SAMPLE_DIR)/HelloMongo.vala
 
 build-bcon: clean quiet
-	echo "Requires json-glib-1.0\n"
+	@echo "Requires json-glib-1.0\n"
 	valac --pkg json-glib-1.0 $(PACKAGES) $(SEPARATED_MACRO) --vapidir ./$(VAPI_DIR) \
 	-o ./$(BUILD_DIR)/BconDoc $(SAMPLE_DIR)/BconDoc.vala
 

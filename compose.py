@@ -74,11 +74,10 @@ def prepare_partials(partials_path, div):
 
 def prepare_deps(deps: list):
 
-    return ''.join(deps)
+    return '\n'.join(deps)
 
 
-def compose_vapi(onefile: bool, folder: str, div: str, out: str, deps: bool, filename: str = 'libmongoc-1.0'):
-
+def compose_vapi(onefile: bool, folder: str, div: str, out: str, deps: bool, filename = 'libmongoc-1.0', filename2 = 'libbson-1.0'):
     logging.debug('Composing VAPI content from partials')
 
     if not os.path.exists(out):
@@ -113,8 +112,6 @@ def compose_vapi(onefile: bool, folder: str, div: str, out: str, deps: bool, fil
         with open('{0}/{1}.vapi'.format(out, filename), 'w') as f:
             f.write(mongoc_formatted)
             logging.debug('Writing on {0}/{1}.vapi'.format(out, filename))
-
-        filename2 = 'libbson-1.0'
 
         with open('{0}/{1}.vapi'.format(out, filename2), 'w') as f:
             f.write(bson_formatted)
