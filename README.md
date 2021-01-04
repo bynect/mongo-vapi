@@ -12,19 +12,34 @@ $ git clone https://github.com/bynect/mongo-vapi.git && cd mongo-vapi && make co
 #### Generate one file
 You can generate a single file containing both `libbson` and `libmongoc` bindings living under the _Mongo_ namespace by using this command:
 ```sh
+#make
 $ make compose
+
+#python
+$ python3 compose.py
+
+#meson
+$ meson build
 ```
 
 #### Generate separated file
 You can generate also generate two separated file containing `libbson` and `libmongoc` bindings living under the _Bson_ and _Mongo_ namespace respectively.
 ```sh
+#for make
 #set the variable in line or export it
 $ SEPARATED_VAPI= make compose
+
+#for python (only vapis)
+$ python3 compose.py -h
+
+#for meson
+$ meson build -Donefile=false
 ```
-__If you want to run tests or examples using two different file (separated option), you have to set the `SEPARATED_VAPI` environmental variable.__
+__If you want to run tests or examples using two different file (separated option), you have to set the `SEPARATED_VAPI` environmental variable.__ (Only for make, Meson does it automatically).
 
 
-## Examples
+## Build with make
+### Examples
 ```sh
 #hello mongo example
 $ make example-hello
@@ -38,13 +53,28 @@ $ make example-bcon
 __If you want to run tests or examples using two different file (separated option), you have to set the `SEPARATED_VAPI` environmental variable.__
 
 
-## Tests
+### Tests
 
 ```sh
 #check connection to local database
 $ make test-status
 ```
 __If you want to run tests or examples using two different file (separated option), you have to set the `SEPARATED_VAPI` environmental variable.__
+
+
+## Build with Meson
+You can use Meson as an alternative build method to make.
+
+Avaible options (see meson_options.txt):
+* `-Donefile`:   Default to true.
+* `-Dverbose`:  Default to false.
+* `-Dtest`:   Build test. Default to true.
+* `-Dexample`:  Build samples. Default to true.
+
+```sh
+# add -Donefile=false for separated vapis
+$ meson build
+```
 
 
 ## Helper
@@ -54,23 +84,23 @@ Also there is a Makefile that has some helper targets for testing and examples.
 You can see the avaible options using:
 ```sh
 #Makefile help
-$ make help #or make without args
+$ make
 
 #Python script help
-$ python3 compose.py --help #or -h
+$ python3 compose.py -h
 ```
 
 
-## Build with Meson
-You can use Meson alternatively to make.
-```sh
-# add --onefile=false for separated vapis
-$ meson build
-```
+## Dependencies
+* [`libmongoc-1.0`](http://mongoc.org/libmongoc/current/installing.html): the binded library
+* `libbson-1.0`: installed with libmongoc, used explicitly if vapis are separated
+* `posix`: used for datetime and minor details
+* `glib-2.0` and `gobject-2.0`: used by Vala
+* `json-glib-1.0`: used by the [BconDoc.vala](samples/BconDoc.vala) samples
 
 
 ## Notes
-* Because the codebase to bind is fairly big, the vapi file is divided in partials file. The file itself can be easily generated with the included Python script / Makefile.
+* Because the codebase to bind is fairly big, the vapi file is divided in partials file. The file itself can be easily generated with the included Python script / Makefile / Meson script.
 
 * While the vast majority of the methods and classes have the same or a very similar name to the C counterpart, some of the names maybe a little tweaked to be more Vala-friendly.
 
@@ -78,9 +108,11 @@ $ meson build
 
 * If you need only the VAPI file, you can download it from the [releases allegates](https://github.com/bynect/mongo-vapi/releases). Generating by yourself is probably better though.
 
+* Test and samples require a running instance of mongodb (`mongod`).
+
 
 ## Changelog
-* Add a simple meson script.
+* Add meson as an alternative build method.
 * Add support for separated vapis for `libbson` and `libmongoc`.
 * Add support for BCON notation.
 * Add support for Crud operation.
@@ -93,4 +125,4 @@ Copyright @bynect
 
 This is free and open source software.
 You can use/modify/redistribute it under the terms of the MIT license.
-See docs/LICENSE for for more details.
+See LICENSE for for more details.

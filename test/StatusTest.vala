@@ -19,14 +19,14 @@ public void print_status (Mongo.Client client) {
     if (status) {
         stdout.printf ("%s\n", res.as_json (null));
     } else {
-        print ("Unable to get server status.\nAre you running a local instance of MongoDB?");
+        print ("Unable to get server status.\nAre you running a local instance of MongoDB?\n");
     }
 
 }
 
 int main (string[] argv) {
 
-    Mongo.init ();//Mongo C Driver internal initialization
+    Mongo.init ();      //Mongo C Driver internal initialization
 
     var uri = new Mongo.Uri ("mongodb://localhost:27017");
 
@@ -34,7 +34,7 @@ int main (string[] argv) {
 
     print_status (client);
 
-    Mongo.cleanup ();//Mongo C Driver internal cleanup
+    Mongo.cleanup ();   //Mongo C Driver internal cleanup
 
     return 0;
 
