@@ -11,3 +11,17 @@ option(
     value : true,
     description : 'Set compose.py single file output.'
 )
+
+option(
+    'test',
+    type : 'boolean',
+    value : true,
+    description : 'Build status test.'
+)
+
+option(
+    'example',
+    type : 'boolean',
+    value : true,
+    description : 'Build bindings examples.'
+)
