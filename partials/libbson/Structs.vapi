@@ -20,7 +20,7 @@ public struct BsonContext {
 
 [CCode (cname = "bson_value_t", free_function = "bson_value_destroy", copy_function = "bson_value_copy", has_type_id = false)]
 public struct BsonValue {
-
+    //TODO
 }
 
 /**
@@ -29,9 +29,8 @@ public struct BsonValue {
 
 [CCode (cname = "bson_visitor_t", free_function = "", has_type_id = false)]
 public struct BsonVisitor {
-    
+    //TODO
 }
-
 
 /**
  * bson_decimal128_t
@@ -41,10 +40,10 @@ public struct BsonVisitor {
 public struct BsonDecimal128 {
 
     [CCode (cname = "bson_decimal128_from_string")]
-    public static bool from_string (string str, BsonDecimal128 dec); 
+    public static bool from_string (string str, BsonDecimal128 dec);
 
     [CCode (cname = "bson_decimal128_from_string_w_len")]
-    public static bool from_string_with_length (string str, int length, BsonDecimal128 dec); 
+    public static bool from_string_with_length (string str, int length, BsonDecimal128 dec);
 
     [CCode (cname = "bson_decimal128_to_string")]
     public void to_string (string str);
@@ -78,7 +77,7 @@ public struct BsonOid {
 
     [CCode (cname = "bson_oid_init_from_string")]
     public void init_from_string (string str);
-    
+
     [CCode (cname = "bson_oid_is_valid")]
     public static bool is_valid (string str, size_t length);
 

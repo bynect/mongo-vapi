@@ -1,7 +1,11 @@
 
 /**
-* mongoc_client_session_t 
+* mongoc_client_session_t
 */
+
+[CCode (cname = "mongoc_client_session_with_transaction_cb_t", has_target = false)]
+public delegate bool ClientSessionTransactionCallback<T> (ClientSession session, T ctx, out Bson? reply, BsonError error);
+
 
 [CCode (cname = "mongoc_client_session_t", free_function = "mongoc_client_session_destroy")]
 [Compact]
@@ -29,9 +33,11 @@ public class ClientSession {
     [CCode (cname = "mongoc_client_session_advance_operation_time")]
     public void advance_operation_time (uint32 timestamp, uint32 increment);
 
-    //TODO: Implement
-    [CCode (cname = "mongoc_client_session")]
-    public bool client_session_with_transaction ();
+    [CCode (cname = "mongoc_client_session_with_transaction", simple_generics = true)]
+    public bool client_session_with_transaction<T> (ClientSessionTransactionCallback cb, TransactionOpt opts, T ctx, Bson? reply, BsonError? error);
+
+    [CCode (cname = "mongoc_client_session_append")]
+    public bool append (Bson opts, BsonError? error);
 
     [CCode (cname = "mongoc_client_session_get_client")]
     public Client get_client ();

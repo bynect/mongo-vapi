@@ -7,7 +7,7 @@
 [Compact]
 public class Bson {
 
-    //Constructors
+    //Constructor
     [CCode (cname = "bson_new")]
     public Bson ();
 
@@ -54,7 +54,7 @@ public class Bson {
 
     [CCode (cname = "bson_append_decimal128")]
     public bool append_decimal128 (string key, int key_length, string collection, BsonDecimal128 value);
-    
+
     [CCode (cname = "bson_append_document")]
     public bool append_document (string key, int key_length, Bson value);
 

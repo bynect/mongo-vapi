@@ -49,14 +49,16 @@ public class APMCallbacks {
 
 }
 
-
 /**
- * mongoc_apm_command_failed_t
+ * mongoc_apm_command_failed_cb_t
  */
 
 [CCode (cname = "mongoc_apm_command_failed_cb_t", has_target = false)]
 public delegate void APMCommandFailedCallback (APMCommandFailed event);
 
+/**
+ * mongoc_apm_command_failed_t
+ */
 
 [CCode (cname = "mongoc_apm_command_failed_t", free_function = "", has_type_id = false)]
 public struct APMCommandFailed {
@@ -91,14 +93,16 @@ public struct APMCommandFailed {
 
 }
 
+/**
+ * mongoc_apm_command_started_cb_t
+ */
+
+[CCode (cname = "mongoc_apm_command_started_cb_t", has_target = false)]
+public delegate void APMCommandStartedCallback (APMCommandStarted event);
 
 /**
  * mongoc_apm_command_failed_t
  */
-
-[CCode (cname = "mongoc_apm_command_started_t", has_target = false)]
-public delegate void APMCommandStartedCallback (APMCommandStarted event);
-
 
 [CCode (cname = "mongoc_apm_command_started_t", free_function = "", has_type_id = false)]
 public struct APMCommandStarted {
@@ -130,14 +134,16 @@ public struct APMCommandStarted {
 
 }
 
-
 /**
- * mongoc_apm_command_succeeded_t
+ * mongoc_apm_command_succeeded_cb_t
  */
 
 [CCode (cname = "mongoc_apm_command_succeeded_cb_t", has_target = false)]
 public delegate void APMCommandSucceededCallback (APMCommandSucceeded event);
 
+/**
+ * mongoc_apm_command_succeeded_t
+ */
 
 [CCode (cname = "mongoc_apm_command_succeeded_t", free_function = "", has_type_id = false)]
 public struct APMCommandSucceeded {
@@ -169,14 +175,16 @@ public struct APMCommandSucceeded {
 
 }
 
-
 /**
- * mongoc_apm_server_changed_t
+ * mongoc_apm_server_changed_cb_t
  */
 
 [CCode (cname = "mongoc_apm_server_changed_cb_t", has_target = false)]
 public delegate void APMServerChangedCallback (APMServerChanged event);
 
+/**
+ * mongoc_apm_server_changed_t
+ */
 
 [CCode (cname = "mongoc_apm_server_changed_t", free_function = "", has_type_id = false)]
 public struct APMServerChanged {
@@ -199,14 +207,16 @@ public struct APMServerChanged {
 
 }
 
-
 /**
- * mongoc_apm_server_closed_t
+ * mongoc_apm_server_closed_cb_t
  */
 
 [CCode (cname = "mongoc_apm_server_closed_cb_t", has_target = false)]
 public delegate void APMServerClosedCallback (APMServerClosed event);
 
+/**
+ * mongoc_apm_server_closed_t
+ */
 
 [CCode (cname = "mongoc_apm_server_closed_t", free_function = "", has_type_id = false)]
 public struct APMServerClosed {
@@ -223,14 +233,16 @@ public struct APMServerClosed {
 
 }
 
-
 /**
- * mongoc_apm_server_opening_t
+ * mongoc_apm_server_opening_cb_t
  */
 
 [CCode (cname = "mongoc_apm_server_opening_cb_t", has_target = false)]
 public delegate void APMServerOpeningCallback (APMServerOpening event);
 
+/**
+ * mongoc_apm_server_opening_t
+ */
 
 [CCode (cname = "mongoc_apm_server_opening_t", free_function = "", has_type_id = false)]
 public struct APMServerOpening {
@@ -247,14 +259,16 @@ public struct APMServerOpening {
 
 }
 
-
 /**
- * mongoc_apm_server_heartbeat_failed_t
+ * mongoc_apm_server_heartbeat_failed_cb_t
  */
 
 [CCode (cname = "mongoc_apm_server_heartbeat_failed_cb_t", has_target = false)]
 public delegate void APMServerHeartbeatFailedCallback (APMServerHeartbeatFailed event);
 
+/**
+ * mongoc_apm_server_heartbeat_failed_t
+ */
 
 [CCode (cname = "mongoc_apm_server_heartbeat_failed_t", free_function = "", has_type_id = false)]
 public struct APMServerHeartbeatFailed {
@@ -277,14 +291,16 @@ public struct APMServerHeartbeatFailed {
 
 }
 
-
 /**
- * mongoc_apm_server_heartbeat_started_t
+ * mongoc_apm_server_heartbeat_started_cb_t
  */
 
 [CCode (cname = "mongoc_apm_server_heartbeat_started_cb_t", has_target = false)]
 public delegate void APMServerHeartbeatStartedCallback (APMServerHeartbeatStarted event);
 
+/**
+ * mongoc_apm_server_heartbeat_started_t
+ */
 
 [CCode (cname = "mongoc_apm_server_heartbeat_started_t", free_function = "", has_type_id = false)]
 public struct APMServerHeartbeatStarted {
@@ -301,14 +317,16 @@ public struct APMServerHeartbeatStarted {
 
 }
 
-
 /**
- * mongoc_apm_server_heartbeat_succeeded_t
+ * mongoc_apm_server_heartbeat_succeeded_cb_t
  */
 
 [CCode (cname = "mongoc_apm_server_heartbeat_succeeded_cb_t", has_target = false)]
 public delegate void APMServerHeartbeatSucceededCallback (APMServerHeartbeatSucceeded event);
 
+/**
+ * mongoc_apm_server_heartbeat_succeeded_t
+ */
 
 [CCode (cname = "mongoc_apm_server_heartbeat_succeeded_t", free_function = "", has_type_id = false)]
 public struct APMServerHeartbeatSucceeded {
@@ -331,14 +349,16 @@ public struct APMServerHeartbeatSucceeded {
 
 }
 
-
 /**
- * mongoc_apm_topology_changed_t
+ * mongoc_apm_topology_changed_cb_t
  */
 
 [CCode (cname = "mongoc_apm_topology_changed_cb_t", has_target = false)]
 public delegate void APMTopologyChangedCallback (APMTopologyChanged event);
 
+/**
+ * mongoc_apm_topology_changed_t
+ */
 
 [CCode (cname = "mongoc_apm_topology_changed_t", free_function = "", has_type_id = false)]
 public struct APMTopologyChanged {
@@ -358,14 +378,16 @@ public struct APMTopologyChanged {
 
 }
 
-
 /**
- * mongoc_apm_topology_closed_t
+ * mongoc_apm_topology_closed_cb_t
  */
 
 [CCode (cname = "mongoc_apm_topology_closed_cb_t", has_target = false)]
 public delegate void APMTopologyClosedCallback (APMTopologyClosed event);
 
+/**
+ * mongoc_apm_topology_closed_t
+ */
 
 [CCode (cname = "mongoc_apm_topology_closed_t", free_function = "", has_type_id = false)]
 public struct APMTopologyClosed {
@@ -379,14 +401,16 @@ public struct APMTopologyClosed {
 
 }
 
-
 /**
- * mongoc_apm_topology_opening_t
+ * mongoc_apm_topology_opening_cb_t
  */
 
 [CCode (cname = "mongoc_apm_topology_opening_cb_t", has_target = false)]
 public delegate void APMTopologyOpeningCallback (APMTopologyOpening event);
 
+/**
+ * mongoc_apm_topology_opening_t
+ */
 
 [CCode (cname = "mongoc_apm_topology_opening_t", free_function = "", has_type_id = false)]
 public struct APMTopologyOpening {

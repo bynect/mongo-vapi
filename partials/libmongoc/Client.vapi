@@ -7,7 +7,7 @@
 [Compact]
 public class Client {
 
-    //Constructors
+    //Constructor
     [CCode (cname = "mongoc_client_new")]
     public Client (string uri);
 

@@ -5,17 +5,16 @@
 
 [CCode (cname = "bson_json_reader_t", free_function = "bson_json_reader_destroy", has_type_id = false)]
 [Compact]
-public class BsonJsonReader {
+public class BsonJsonReader<T> {
 
-    //Constructors
-    //TODO
-    //  [CCode (cname = "bson_json_reader_new")]
-    //  public BsonJsonReader (void data, JsonReaderCB cb, JsonDestroyCB dcb, bool allow_multiple, size_t buf_size);
-
+    //Constructor
     [CCode (cname = "bson_json_reader_new")]
+    public BsonJsonReader (ref T data, JsonReaderCallback cb, JsonDestroyCallback dcb, bool allow_multiple, size_t buf_size);
+
+    [CCode (cname = "bson_json_reader_new_from_file")]
     public BsonJsonReader.from_file (string filename, BsonError error);
 
-    [CCode (cname = "bson_json_reader_new")]
+    [CCode (cname = "bson_json_reader_new_from_fd")]
     public BsonJsonReader.from_fd (int fd, bool close_on_destroy);
 
     [CCode (cname = "bson_json_data_reader_new")]
@@ -23,12 +22,26 @@ public class BsonJsonReader {
 
     //Methods
     [CCode (cname = "bson_json_reader_read")]
-    public int read (Bson bson, BsonError error);
+    public int read (Bson bson, BsonError? error);
 
     [CCode (cname = "bson_json_data_reader_ingest")]
     public void ingest (uint8 data, size_t len);
 
 }
+
+/**
+ * bson_json_reader_cb
+ */
+
+[CCode (cname = "bson_json_reader_cb", has_target = false, array_length_type = "size_t")]
+public delegate ssize_t JsonReaderCallback<T> (T? handle, uint8[] buf);
+
+/**
+ * bson_json_destroy_cb
+ */
+
+[CCode (cname = "bson_json_destroy_cb", has_target = false)]
+public delegate void JsonDestroyCallback<T> (T? handle);
 
 /**
  * bson_reader_t
@@ -38,7 +51,7 @@ public class BsonJsonReader {
 [Compact]
 public class BsonReader {
 
-    //Constructors
+    //Constructor
     [CCode (cname = "bson_reader_new_from_data")]
     public BsonReader.from_data (uint8 data, size_t length);
 
