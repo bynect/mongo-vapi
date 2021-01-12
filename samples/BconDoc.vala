@@ -45,17 +45,23 @@ int main (string[] argv) {
             "born", Bson.BCON_DATE_TIME (born.mktime () * 1000),
             "died", Bson.BCON_DATE_TIME (died.mktime () * 1000),
             "name", "{",
-            "first", Bson.BCON_UTF8 ("Grace"),
-            "last", Bson.BCON_UTF8 ("Hopper"),
+                "first", Bson.BCON_UTF8 ("Grace"),
+                "last", Bson.BCON_UTF8 ("Hopper"),
             "}",
             "languages", "[",
-            Bson.BCON_UTF8 ("MATH-MATIC"),
-            Bson.BCON_UTF8 ("FLOW-MATIC"),
-            Bson.BCON_UTF8 ("COBOL"),
+                Bson.BCON_UTF8 ("MATH-MATIC"),
+                Bson.BCON_UTF8 ("FLOW-MATIC"),
+                Bson.BCON_UTF8 ("COBOL"),
             "]",
             "degrees", "[",
-            "{", "degree", Bson.BCON_UTF8 ("BA"), "school", Bson.BCON_UTF8 ("Vassar"), "}",
-            "{", "degree", Bson.BCON_UTF8 ("PhD"), "school", Bson.BCON_UTF8 ("Yale"), "}",
+                "{",
+                    "degree", Bson.BCON_UTF8 ("BA"),
+                    "school", Bson.BCON_UTF8 ("Vassar"),
+                "}",
+                "{",
+                    "degree", Bson.BCON_UTF8 ("PhD"),
+                    "school", Bson.BCON_UTF8 ("Yale"),
+                "}",
             "]"
         );
     #else
@@ -63,30 +69,42 @@ int main (string[] argv) {
             "born", Mongo.BCON_DATE_TIME (born.mktime () * 1000),
             "died", Mongo.BCON_DATE_TIME (died.mktime () * 1000),
             "name", "{",
-            "first", Mongo.BCON_UTF8 ("Grace"),
-            "last", Mongo.BCON_UTF8 ("Hopper"),
+                "first", Mongo.BCON_UTF8 ("Grace"),
+                "last", Mongo.BCON_UTF8 ("Hopper"),
             "}",
             "languages", "[",
-            Mongo.BCON_UTF8 ("MATH-MATIC"),
-            Mongo.BCON_UTF8 ("FLOW-MATIC"),
-            Mongo.BCON_UTF8 ("COBOL"),
+                Mongo.BCON_UTF8 ("MATH-MATIC"),
+                Mongo.BCON_UTF8 ("FLOW-MATIC"),
+                Mongo.BCON_UTF8 ("COBOL"),
             "]",
             "degrees", "[",
-            "{", "degree", Mongo.BCON_UTF8 ("BA"), "school", Mongo.BCON_UTF8 ("Vassar"), "}",
-            "{", "degree", Mongo.BCON_UTF8 ("PhD"), "school", Mongo.BCON_UTF8 ("Yale"), "}",
+                "{",
+                    "degree", Mongo.BCON_UTF8 ("BA"),
+                    "school", Mongo.BCON_UTF8 ("Vassar"),
+                "}",
+                "{",
+                    "degree", Mongo.BCON_UTF8 ("PhD"),
+                    "school", Mongo.BCON_UTF8 ("Yale"),
+                "}",
             "]"
         );
     #endif
 
     //Indentation made with json-glib-1.0
-    Json.Generator generator = new Json.Generator ();
-    var root = Json.from_string (grace_hopper.as_canonical_extended_json (null));
-    generator.set_root (root);
-    generator.set_indent (4);
-    generator.set_indent_char (' ');
-    generator.set_pretty (true);
 
-    stdout.printf("Example 2 (indented):\n%s\n", generator.to_data (null));
+    try {
+        Json.Generator generator = new Json.Generator ();
+        var root = Json.from_string (grace_hopper.as_canonical_extended_json (null));
 
-    return 0;
+        generator.set_root (root);
+        generator.set_indent (4);
+        generator.set_indent_char (' ');
+        generator.set_pretty (true);
+
+        stdout.printf("Example 2 (indented):\n%s\n", generator.to_data (null));
+
+        return 0;
+    } catch (GLib.Error e) {
+        return 1;
+    }
 }
