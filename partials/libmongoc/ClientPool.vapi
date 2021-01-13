@@ -7,7 +7,7 @@
 [Compact]
 public class ClientPool {
 
-    //Constructor
+    //Constructors
     [CCode (cname = "mongoc_client_pool_new")]
     public ClientPool (Uri uri);
 

@@ -7,7 +7,7 @@
 [Compact]
 public class Bson {
 
-    //Constructor
+    //Constructors
     [CCode (cname = "bson_new")]
     public Bson ();
 

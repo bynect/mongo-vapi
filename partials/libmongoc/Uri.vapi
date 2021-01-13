@@ -56,28 +56,28 @@ public class Uri {
     public string? get_password ();
 
     [CCode (cname = "mongoc_uri_get_read_prefs_t")]
-    public ReadPrefs? get_read_prefs (); 
+    public ReadPrefs? get_read_prefs ();
 
     [CCode (cname = "mongoc_uri_get_read_concern")]
-    public ReadConcern? get_read_concern (); 
+    public ReadConcern? get_read_concern ();
 
     [CCode (cname = "mongoc_uri_get_replice_set")]
-    public string? get_replice_set (); 
+    public string? get_replice_set ();
 
     [CCode (cname = "mongoc_uri_get_string")]
-    public string get_string (); 
+    public string get_string ();
 
     [CCode (cname = "mongoc_uri_get_tls")]
-    public bool get_tls (); 
+    public bool get_tls ();
 
     [CCode (cname = "mongoc_uri_get_username")]
-    public string? get_username (); 
+    public string? get_username ();
 
     [CCode (cname = "mongoc_uri_get_write_concern")]
-    public WriteConcern? get_write_concern (); 
+    public WriteConcern? get_write_concern ();
 
     [CCode (cname = "mongoc_uri_has_option")]
-    public bool has_option (string option); 
+    public bool has_option (string option);
 
     [CCode (cname = "mongoc_uri_option_is_bool")]
     public bool option_is_bool (string option);

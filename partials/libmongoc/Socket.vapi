@@ -1,13 +1,13 @@
 
 /**
- * mongoc_socket_t 
+ * mongoc_socket_t
  */
 
 [CCode (cname = "mongoc_socket_t", free_function = "mongoc_socket_destroy")]
 [Compact]
 public class Socket {
 
-    //Constructor
+    //Constructors
     [CCode (cname = "mongoc_socket_new")]
     public Socket (int domain, int type, int protocol);
 

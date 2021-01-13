@@ -34,10 +34,10 @@ public class Collection {
 
     [CCode (cname = "mongoc_collection_create_index")]
     public bool create_index (Bson keys, IndexOpt? opt, BsonError? error);
-    
+
     [CCode (cname = "mongoc_collection_create_index_with_opts")]
     public bool create_index_with_opts (Bson keys, IndexOpt? opt, Bson? command_opts, Bson? reply, BsonError? error);
-    
+
     [CCode (cname = "mongoc_collection_delete_many")]
     public bool delete_many (Bson selector, Bson? opts, Bson? reply, BsonError? error);
 
@@ -97,7 +97,7 @@ public class Collection {
 
     [CCode (cname = "mongoc_collection_insert_many")]
     public bool insert_many (Bson[] documents, size_t n_documents, Bson? opts, Bson? reply,  BsonError? error);
-    
+
     [CCode (cname = "mongoc_collection_keys_to_index_string")]
     public static string keys_to_index_string (Bson keys);
 

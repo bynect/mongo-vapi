@@ -1,13 +1,13 @@
 
 /**
- * mongoc_transaction_opt_t 
+ * mongoc_transaction_opt_t
  */
 
 [CCode (cname = "mongoc_transaction_opt_t", free_function = "mongoc_transaction_opts_destroy", copy_function = "mongoc_transaction_opts_clone")]
 [Compact]
 public class TransactionOpt {
-    
-    //Constructor
+
+    //Constructors
     [CCode (cname = "mongoc_transaction_opts_new")]
     public TransactionOpt ();
 
@@ -39,7 +39,7 @@ public class TransactionOpt {
 }
 
 /**
- * mongoc_session_opt_t 
+ * mongoc_session_opt_t
  */
 
 [CCode (cname = "mongoc_session_opt_t", free_function = "mongoc_session_opt_destroy")]
@@ -66,12 +66,12 @@ public class SessionOpt {
 }
 
 /**
- * mongoc_ssl_opt_t 
+ * mongoc_ssl_opt_t
  */
 
 [CCode (cname = "mongoc_ssl_opt_t")]
 public struct SSLOpts {
-    
+
     //FIXME
     [CCode (cname = "mongoc_ssl_opt_get_default")]
     public static SSLOpts get_default ();
@@ -79,7 +79,7 @@ public struct SSLOpts {
 }
 
 /**
- * mongoc_auto_encryption_opts_t 
+ * mongoc_auto_encryption_opts_t
  */
 
 [CCode (cname = "mongoc_auto_encryption_opts_t", free_function = "mongoc_auto_encryption_opts_destroy")]
@@ -115,7 +115,7 @@ public class AutoEncryptionOpts {
 }
 
 /**
- * mongoc_index_opt_t 
+ * mongoc_index_opt_t
  */
 
 [CCode (cname = "mongoc_index_opt_t", has_type_id = false)]
@@ -132,7 +132,7 @@ public struct IndexOpt {
 }
 
 /**
- * mongoc_index_opt_wt_t 
+ * mongoc_index_opt_wt_t
  */
 
 [CCode (cname = "mongoc_index_opt_wt_t", has_type_id = false)]
@@ -148,7 +148,7 @@ public struct IndexOptWT {
 }
 
 /**
- * mongoc_index_opt_geo_t 
+ * mongoc_index_opt_geo_t
  */
 
 [CCode (cname = "mongoc_index_opt_geo_t", has_type_id = false)]
@@ -164,17 +164,17 @@ public struct IndexOptGEO {
 }
 
 /**
- * mongoc_find_and_modify_opts_t 
+ * mongoc_find_and_modify_opts_t
  */
 
 [CCode (cname = "mongoc_find_and_modify_opts_t", destroy_function = "mongoc_find_and_modify_opts_destroy")]
 [Compact]
 public class FindAndModifyOpt {
 
-    //Constructor
+    //Constructors
     [CCode (cname = "mongoc_find_and_modify_opts_new")]
     public FindAndModifyOpt ();
-    
+
     //Methods
     [CCode (cname = "mongoc_find_and_modify_opts_append")]
     public bool append (Bson extra);

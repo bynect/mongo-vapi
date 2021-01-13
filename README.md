@@ -1,4 +1,4 @@
-# MongoC Vapi
+# Mongo C Vapi
 
 Vala bindings for the [Mongo C Driver](https://github.com/mongodb/mongo-c-driver "mongo-c-driver").
 

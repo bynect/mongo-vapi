@@ -6,7 +6,7 @@
 [Compact]
 public class APMCallbacks {
 
-    //Constructor
+    //Constructors
     [CCode (cname = "mongoc_apm_callbacks_new")]
     public APMCallbacks ();
 

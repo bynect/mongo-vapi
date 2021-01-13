@@ -5,8 +5,8 @@
 [CCode (cname = "bson_string_t", free_function = "", has_type_id = false)]
 [Compact]
 public class BsonString {
-    
-    //Constructor
+
+    //Constructors
     [CCode (cname = "bson_string_new")]
     public BsonString (string str);
 

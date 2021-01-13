@@ -1,6 +1,6 @@
 
 /**
-* mongoc_gridfs_t 
+* mongoc_gridfs_t
 */
 
 [CCode (cname = "mongoc_gridfs_t", free_function = "mongoc_gridfs_destroy")]
@@ -10,14 +10,14 @@ public class GridFS {
 }
 
 /**
-* mongoc_gridfs_bucket_t 
+* mongoc_gridfs_bucket_t
 */
 
 [CCode (cname = "mongoc_gridfs_bucket_t", free_function = "mongoc_gridfs_bucket_destroy")]
 [Compact]
 public class GridFSBucket {
 
-    //Constructor
+    //Constructors
     [CCode (cname = "mongoc_gridfs_bucket_new")]
     public GridFSBucket (Database db, Bson? opts, ReadPrefs? read_prefs, BsonError? error);
 

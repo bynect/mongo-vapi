@@ -51,7 +51,7 @@ public class Stream {
 }
 
 /**
- * mongoc_change_stream_t 
+ * mongoc_change_stream_t
  */
 
 [CCode (cname = "mongoc_change_stream_t", free_function = "mongoc_change_stream_destroy")]
@@ -72,7 +72,7 @@ public class ChangeStream {
 }
 
 /**
- * mongoc_stream_buffered_t 
+ * mongoc_stream_buffered_t
  */
 
 [CCode (cname = "mongoc_stream_buffered_t", has_type_id = false)]
@@ -85,7 +85,7 @@ public struct StreamBuffered {
 }
 
 /**
- * mongoc_stream_file_t 
+ * mongoc_stream_file_t
  */
 
 [CCode (cname = "mongoc_stream_file_t", has_type_id = false)]
@@ -101,11 +101,11 @@ public struct StreamFile {
     //FIXME
     [CCode (cname = "mongoc_stream_file_get_fd")]
     public int get_fd ();
-    
+
 }
 
 /**
- * mongoc_stream_socket_t 
+ * mongoc_stream_socket_t
  */
 
 [CCode (cname = "mongoc_stream_socket_t", has_type_id = false)]
@@ -117,14 +117,14 @@ public struct StreamSocket {
 
     [CCode (cname = "mongoc_stream_socket_get_socket")]
     public Socket get_socket ();
-    
+
 }
 
 /**
- * mongoc_stream_tls_t 
+ * mongoc_stream_tls_t
  */
 
 [CCode (cname = "mongoc_stream_tls_t", has_type_id = false)]
 public struct StreamTLS {
-    
+
 }

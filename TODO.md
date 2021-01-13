@@ -37,8 +37,8 @@
 * [x] Database
 * [x] Collection
 * [x] BulkOperations (?)
-* [x] APMCallbacks (?)
-* [x] Transactions (?)
+* [x] APMCallbacks
+* [ ] Transactions (?)
 * [x] Helper methods (?)
 
 (?) : To test and/or not fully implemented

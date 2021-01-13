@@ -1,6 +1,6 @@
 
 /**
- * mongoc_query_flags_t 
+ * mongoc_query_flags_t
  */
 [CCode (cname = "mongoc_query_flags_t", cprefix = "MONGOC_QUERY_", has_type_id = false)]
 public enum QueryFlags {
@@ -15,7 +15,7 @@ public enum QueryFlags {
 }
 
 /**
- * mongoc_find_and_modify_flags_t 
+ * mongoc_find_and_modify_flags_t
  */
 
 [CCode (cname = "mongoc_find_and_modify_flags_t", cprefix = "MONGOC_FIND_AND_MODIFY_", has_type_id = false)]
@@ -27,7 +27,7 @@ public enum FindAndModifyFlags {
 }
 
 /**
- * mongoc_insert_flags_t 
+ * mongoc_insert_flags_t
  */
 
 [CCode (cname = "mongoc_insert_flags_t", cprefix = "MONGOC_INSERT_", has_type_id = false)]
@@ -38,7 +38,7 @@ public enum InsertFlags {
 }
 
 /**
- * mongoc_remove_flags_t 
+ * mongoc_remove_flags_t
  */
 
 [CCode (cname = "mongoc_remove_flags_t", cprefix = "MONGOC_REMOVE_", has_type_id = false)]
@@ -48,7 +48,7 @@ public enum RemoveFlags {
 }
 
 /**
- * mongoc_update_flags_t 
+ * mongoc_update_flags_t
  */
 
 [CCode (cname = "mongoc_update_flags_t", cprefix = "MONGOC_UPDATE_", has_type_id = false)]
@@ -60,7 +60,7 @@ public enum UpdateFlags {
 }
 
 /**
- * mongoc_delete_flags_t 
+ * mongoc_delete_flags_t
  */
 
 [CCode (cname = "mongoc_delete_flags_t", cprefix = "MONGOC_DELETE_", has_type_id = false)]
@@ -70,7 +70,7 @@ public enum DeleteFlags {
 }
 
 /**
- * mongoc_reply_flags_t 
+ * mongoc_reply_flags_t
  */
 
 [CCode (cname = "mongoc_reply_flags_t", cprefix = "MONGOC_REPLY_", has_type_id = false)]

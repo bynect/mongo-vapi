@@ -6,7 +6,7 @@
 [CCode (cname = "mongoc_client_encryption_t", free_function = "mongoc_client_encryption_destroy")]
 public class ClientEncryption {
 
-    //Constructor
+    //Constructors
     [CCode (cname = "mongoc_client_encryption_new")]
     public ClientEncryption (ClientEncryptionOpts opts, BsonError? error);
 
@@ -30,7 +30,7 @@ public class ClientEncryption {
 [Compact]
 public class  ClientEncryptionOpts {
 
-    //Constructor
+    //Constructors
     [CCode (cname = "mongoc_client_encryption_opts_new")]
     public ClientEncryptionOpts ();
 
@@ -54,7 +54,7 @@ public class  ClientEncryptionOpts {
 [Compact]
 public class  ClientEncryptionEncryptOpts {
 
-    //Constructor
+    //Constructors
     [CCode (cname = "mongoc_client_encryption_encrypt_opts_new")]
     public ClientEncryptionEncryptOpts ();
 
@@ -78,7 +78,7 @@ public class  ClientEncryptionEncryptOpts {
 [Compact]
 public class  ClientEncryptionDatakeyOpts {
 
-    //Constructor
+    //Constructors
     [CCode (cname = "mongoc_client_encryption_datakey_opts_new")]
     public ClientEncryptionDatakeyOpts ();
 

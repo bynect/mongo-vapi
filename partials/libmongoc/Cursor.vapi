@@ -7,7 +7,7 @@
 [CCode (cname = "mongoc_cursor_t", free_function = "mongoc_cursor_destroy")]
 public class Cursor {
 
-    //Constructor
+    //Constructors
     [CCode (cname = "mongoc_cursor_new_from_command_reply")]
     public Cursor (Client client, Bson reply, uint32 server_id);
 

@@ -37,7 +37,7 @@ public class Database {
 
     [CCode (cname = "mongoc_database_find_collections_with_ops")]
     public Cursor find_collections_with_ops (Bson? opts);
-    
+
     [CCode (cname = "mongoc_database_get_collection")]
     public Collection get_collection (string name);
 

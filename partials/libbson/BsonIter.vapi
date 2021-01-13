@@ -7,7 +7,7 @@
 [Compact]
 public class BsonIter {
 
-    //Methods    
+    //Methods
     [CCode (cname = "bson_iter_array")]
     public void array (uint32 array_len, ref uint8 array);
 
@@ -16,7 +16,7 @@ public class BsonIter {
 
     [CCode (cname = "bson_iter_as_double")]
     public bool as_double ();
-    
+
     [CCode (cname = "bson_iter_as_int64")]
     public int64 as_int64 ();
 
@@ -137,7 +137,7 @@ public class BsonIter {
 
     [CCode (cname = "bson_iter_timestamp")]
     public void timestamp (uint32 timestamp, uint32 increment);
-    
+
     [CCode (cname = "bson_iter_timeval")]
     public void timeval (GLib.TimeVal tv);
 

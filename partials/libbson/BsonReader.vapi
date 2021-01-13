@@ -7,7 +7,7 @@
 [Compact]
 public class BsonJsonReader<T> {
 
-    //Constructor
+    //Constructors
     [CCode (cname = "bson_json_reader_new")]
     public BsonJsonReader (ref T data, JsonReaderCallback cb, JsonDestroyCallback dcb, bool allow_multiple, size_t buf_size);
 
@@ -51,7 +51,7 @@ public delegate void JsonDestroyCallback<T> (T? handle);
 [Compact]
 public class BsonReader {
 
-    //Constructor
+    //Constructors
     [CCode (cname = "bson_reader_new_from_data")]
     public BsonReader.from_data (uint8 data, size_t length);
 

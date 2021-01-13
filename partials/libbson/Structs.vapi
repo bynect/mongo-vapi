@@ -6,9 +6,11 @@
 [CCode (cname = "bson_context_t", free_function = "bson_context_destroy", has_type_id = false)]
 public struct BsonContext {
 
+    //Constructors
     [CCode (cname = "bson_context_new")]
     public BsonContext (BsonContextFlags flags);
 
+    //Methods
     [CCode (cname = "bson_context_get_default")]
     public BsonContext.get_default ();
 
@@ -39,12 +41,14 @@ public struct BsonVisitor {
 [CCode (cname = "bson_decimal128_t", has_type_id = false, free_function = "")]
 public struct BsonDecimal128 {
 
+    //Constructors
     [CCode (cname = "bson_decimal128_from_string")]
     public static bool from_string (string str, BsonDecimal128 dec);
 
     [CCode (cname = "bson_decimal128_from_string_w_len")]
     public static bool from_string_with_length (string str, int length, BsonDecimal128 dec);
 
+    //Methods
     [CCode (cname = "bson_decimal128_to_string")]
     public void to_string (string str);
 
@@ -57,6 +61,7 @@ public struct BsonDecimal128 {
 [CCode (cname = "bson_oid_t", has_type_id = false, free_function = "", copy_function = "bson_oid_copy")]
 public struct BsonOid {
 
+    //Methods
     [CCode (cname = "bson_oid_compare")]
     public int compare (BsonOid oid);
 
@@ -93,6 +98,7 @@ public struct BsonOid {
 [CCode (cname = "bson_error_t", free_function = "", has_type_id = false)]
 public struct BsonError {
 
+    //Methods
     [CCode (cname = "bson_set_error")]
     public void set_error (uint32 domain, uint32 code, string format);
 

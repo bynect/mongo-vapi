@@ -21,7 +21,7 @@ public enum ReadMode {
 [Compact]
 public class ReadPrefs {
 
-    //Constructor
+    //Constructors
     [CCode (cname = "mongoc_read_prefs_new")]
     public ReadPrefs (ReadMode mode);
 
@@ -59,14 +59,14 @@ public class ReadPrefs {
 }
 
 /**
-* mongoc_read_concern_t 
+* mongoc_read_concern_t
 */
 
 [CCode (cname = "mongoc_read_concern_t", free_function = "mongoc_read_concern_destroy")]
 [Compact]
 public class ReadConcern {
 
-    //Constructor
+    //Constructors
     [CCode (cname = "mongoc_read_concern_new")]
     public ReadConcern ();
 
@@ -84,16 +84,16 @@ public class ReadConcern {
     public bool is_default ();
 
 }
-    
+
 /**
-* mongoc_write_concern_t 
+* mongoc_write_concern_t
 */
 
 [CCode (cname = "mongoc_write_concern_t", free_function = "mongoc_write_concern_destroy")]
 [Compact]
 public class WriteConcern {
 
-    //Constructor
+    //Constructors
     [CCode (cname = "mongoc_write_concern_new")]
     public WriteConcern ();
 
