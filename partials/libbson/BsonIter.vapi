@@ -1,4 +1,6 @@
 
+//TODO: Bind associated macros
+
 /**
  * bson_iter_t
  */
@@ -125,9 +127,8 @@ public class BsonIter {
     [CCode (cname = "bson_iter_recurse")]
     public bool recurse (BsonIter child);
 
-    //XXX
     [CCode (cname = "bson_iter_regex")]
-    public string regex ();
+    public string regex (string? options = null);
 
     [CCode (cname = "bson_iter_symbol")]
     public string symbol (uint32 length);
@@ -150,7 +151,6 @@ public class BsonIter {
     [CCode (cname = "bson_iter_value")]
     public BsonValue value ();
 
-    //XXX
     [CCode (cname = "bson_iter_visit_all")]
     public bool visit_all (BsonVisitor visitor);
 

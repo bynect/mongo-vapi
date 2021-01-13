@@ -17,24 +17,6 @@ public struct BsonContext {
 }
 
 /**
- * bson_value_t
- */
-
-[CCode (cname = "bson_value_t", free_function = "bson_value_destroy", copy_function = "bson_value_copy", has_type_id = false)]
-public struct BsonValue {
-    //TODO
-}
-
-/**
- * bson_visitor_t
- */
-
-[CCode (cname = "bson_visitor_t", free_function = "", has_type_id = false)]
-public struct BsonVisitor {
-    //TODO
-}
-
-/**
  * bson_decimal128_t
  */
 
