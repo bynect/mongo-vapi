@@ -1,11 +1,14 @@
 
 /**
-* mongoc_client_session_t
-*/
+ * mongoc_client_session_with_transaction_cb_t
+ */
 
 [CCode (cname = "mongoc_client_session_with_transaction_cb_t", has_target = false)]
 public delegate bool ClientSessionTransactionCallback<T> (ClientSession session, T ctx, out Bson? reply, BsonError error);
 
+/**
+ * mongoc_client_session_t
+ */
 
 [CCode (cname = "mongoc_client_session_t", free_function = "mongoc_client_session_destroy")]
 [Compact]

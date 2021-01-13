@@ -103,9 +103,8 @@ public class Client {
     [CCode (cname = "mongoc_client_set_ssl_opts")]
     public void set_ssl_opts (SSLOpts opts);
 
-    //TODO
-    //  [CCode (cname = "mongoc_client_set_stream_initiator")]
-    //  public void client_set_stream_initiator (StreamInitiator initiator);
+    [CCode (cname = "mongoc_client_set_stream_initiator")]
+    public void client_set_stream_initiator<T> (StreamInitiator initiator, T data);
 
     [CCode (cname = "mongoc_client_set_write_concern")]
     public void set_write_concern (WriteConcern write_concern);
@@ -120,3 +119,10 @@ public class Client {
     public bool write_command_with_opts (string dbname, Bson command, ReadPrefs read_prefs, Bson? opts, Bson reply, BsonError? error);
 
 }
+
+/**
+ * mongoc_client_session_with_transaction_cb_t
+ */
+
+[CCode (cname = "mongoc_stream_initiator_t", has_target = false)]
+public delegate Stream StreamInitiator<T> (Uri uri, HostList host, T data, BsonError? error);
