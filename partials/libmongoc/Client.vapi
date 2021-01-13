@@ -60,9 +60,9 @@ public class Client {
     [CCode (cname = "mongoc_client_get_server_description")]
     public ServerDescription get_server_description (uint32 server_id);
 
-    //FIXME
-    [CCode (cname = "mongoc_client_get_server_descriptions", array_length_type = "size_t")]
-    public ServerDescription[] get_server_descriptions (size_t n);
+    //FIXME: Fix array length
+    [CCode (cname = "mongoc_client_get_server_descriptions", array_length_pos = 1, array_length_type = "size_t")]
+    public ServerDescription[] get_server_descriptions ();
 
     [CCode (cname = "mongoc_client_get_server_status")]
     public bool get_server_status (ReadPrefs read_prefs, Bson reply, BsonError? error);

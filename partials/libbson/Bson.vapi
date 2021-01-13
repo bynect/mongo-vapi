@@ -1,5 +1,12 @@
 
 /**
+ * bson_realloc_func
+ */
+
+[CCode (cname = "bson_realloc_func", simple_generics = true)]
+public delegate T? ReallocFunc<T, C> (T? mem, size_t num_bytes, C? ctx);
+
+/**
  * bson_t
  */
 
@@ -11,9 +18,9 @@ public class Bson {
     [CCode (cname = "bson_new")]
     public Bson ();
 
-    //FIXME
-    //  [CCode (cname = "bson_new_from_buffer")]
-    //  public Bson.from_buffer (ref uint8 buf, size_t buf_len, ReallocFunc func);
+    //FIXME: Array or pointer for the buffer?
+    [CCode (cname = "bson_new_from_buffer")]
+    public Bson.from_buffer (ref uint8 buf, size_t buf_len, ReallocFunc func);
 
     [CCode (cname = "bson_new_from_data")]
     public Bson.from_data (uint8 data, size_t length);

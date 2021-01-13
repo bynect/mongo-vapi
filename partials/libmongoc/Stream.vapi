@@ -7,11 +7,12 @@
 [Compact]
 public class Stream {
 
-    //Methods
+    //Constructions
     //FIXME
     [CCode (cname = "mongoc_stream_buffered_new")]
     public Stream (Stream base_stream, size_t buffer);
 
+    //Methods
     [CCode (cname = "mongoc_stream_close")]
     public int close ();
 
@@ -59,9 +60,9 @@ public class Stream {
 public class ChangeStream {
 
     //Methods
-    //FIXME: bson must be location reference
+    //FIXME: needs a bson reference
     [CCode (cname = "mongoc_change_stream_next")]
-    public bool next (Bson bson);
+    public bool next (ref Bson bson);
 
     [CCode (cname = "mongoc_change_stream_next")]
     public Bson? get_resume_token (ChangeStream stream);
@@ -98,7 +99,6 @@ public struct StreamFile {
     [CCode (cname = "mongoc_stream_file_new_for_path")]
     public static Stream? new_for_path (string path, int flags, int mode);
 
-    //FIXME
     [CCode (cname = "mongoc_stream_file_get_fd")]
     public int get_fd ();
 

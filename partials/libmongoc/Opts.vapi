@@ -72,7 +72,20 @@ public class SessionOpt {
 [CCode (cname = "mongoc_ssl_opt_t")]
 public struct SSLOpts {
 
-    //FIXME
+    public const string pem_file;
+
+    public const string pem_pwd;
+
+    public const string ca_file;
+
+    public const string ca_dir;
+
+    public const string crl_file;
+
+    public bool weak_cert_validation;
+
+    public bool allow_invalid_hostname;
+
     [CCode (cname = "mongoc_ssl_opt_get_default")]
     public static SSLOpts get_default ();
 

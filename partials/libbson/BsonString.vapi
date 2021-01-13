@@ -46,9 +46,8 @@ public struct BsonUnichar {
  * Various chars and string methods
  */
 
-//FIXME
-//  [CCode (cname = "bson_ascii_strtoll")]
-//  public int64 ascii_strtoll (string str, ref char? endptr, int base);
+[CCode (cname = "bson_ascii_strtoll")]
+public int64 ascii_strtoll (string str, out string? endptr, int _base);
 
 [CCode (cname = "bson_isspace")]
 public bool is_space (char c);
@@ -80,9 +79,8 @@ public void strndup (string str, size_t size);
 [CCode (cname = "bson_strnlen")]
 public size_t strnlen (string dst, size_t max);
 
-//FIXME
-//  [CCode (cname = "bson_uint32_to_string")]
-//  public size_t uint32_to_string (uint32 value, ref string strptr, string str, size_t size);
+[CCode (cname = "bson_uint32_to_string")]
+public size_t uint32_to_string (uint32 value, out string strptr, string str, size_t size);
 
 [CCode (cname = "bson_utf8_escape_for_json")]
 public string utf8_escape_for_json (string utf8, ssize_t utf8_len);

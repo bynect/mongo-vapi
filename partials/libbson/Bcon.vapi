@@ -36,8 +36,9 @@ public BconType BCON_DATE_TIME (int64 val);
 [CCode (cname = "BCON_NULL")]
 public BconType BCON_NULL ();
 
+//FIXME
 [CCode (cname = "BCON_REGEX")]
-public BconType BCON_REGEX (string regex, string flags);//FIXME
+public BconType BCON_REGEX (string regex, string flags);
 
 [CCode (cname = "BCON_DBPOINTER")]
 public BconType BCON_DBPOINTER (Collection coll, BsonOid oid);
