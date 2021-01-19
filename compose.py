@@ -189,7 +189,7 @@ elif args.out and args.folder:
         print('Done. VAPI generated in ./{} [{}]'.format(args.out, 'onefile' if args.onefile else 'separated'))
     finally:
         logging.info('\nLicensed under MIT, see LICENSE or `make license`')
-        logging.info('Do `python3 compose.py -h` to see usage options')
+        logging.info('Run `python3 compose.py -h` for usage options')
 
 else:
     parser.print_help(sys.stderr)

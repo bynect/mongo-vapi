@@ -17,8 +17,8 @@ You can generate a single file containing both `libbson` and `libmongoc` binding
 #make
 $ make compose
 
-#python
-$ python3 compose.py
+#python (only vapis)
+$ python3 compose.py --onefile
 
 #meson
 $ meson build
@@ -33,7 +33,7 @@ You can generate also generate two separated file containing `libbson` and `libm
 $ SEPARATED_VAPI= make compose
 
 #for python (only vapis)
-$ python3 compose.py -h
+$ python3 compose.py
 
 #for meson
 $ meson build -Donefile=false
