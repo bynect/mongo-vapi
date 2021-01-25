@@ -15,10 +15,10 @@
 * [x] BsonError
 * [x] BsonOid
 * [x] BsonDecimal128 (?)
-* [ ] BsonValue
-* [ ] BsonVisitor
+* [x] BsonValue (?)
+* [x] BsonVisitor (?)
 * [x] BsonContext
-* [x] Helper methods
+* [x] Helper methods (?)
 
 ## Mongo (libmongoc)
 
