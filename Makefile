@@ -6,13 +6,16 @@ TEST_DIR = test
 VAPI_DIR = vapi
 
 
-SEPARATED_MACRO = $${SEPARATED_VAPI+ -D SEPARATED_VAPI}
-SEPARATED_PKG = $${SEPARATED_VAPI+ --pkg libbson-1.0}
-ONEFILE := $${SEPARATED_VAPI- --onefile}
+SEPARATED_MACRO = $${SEPARATED_VAPI+"-D SEPARATED_VAPI"}
+SEPARATED_PKG = $${SEPARATED_VAPI+"--pkg libbson-1.0"}
+ONEFILE := $${SEPARATED_VAPI-"--onefile"}
 
 
 PACKAGES = --pkg libmongoc-1.0 $(SEPARATED_PKG)
 DEFINES = $(SEPARATED_MACRO)
+
+
+all: compose build-status build-crud build-hello build-bcon
 
 
 compose: clean
