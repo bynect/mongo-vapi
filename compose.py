@@ -66,7 +66,11 @@ def prepare_partials(partials_path, div):
     final_partials = []
     for fn in partials_path:
         with open(fn, 'r') as f:
-            final_partials.append(indent(f.read(), div))
+            fn_strip = fn
+            while fn_strip.startswith('./'):
+                fn_strip = fn_strip[2:]
+            FILE_HEADER = "\n/**\n * Partial section from {}\n */\n".format(fn_strip)
+            final_partials.append(indent(FILE_HEADER + f.read(), div))
             logging.debug('Reading file {}'.format(fn))
 
     return final_partials
