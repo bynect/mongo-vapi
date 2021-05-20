@@ -159,7 +159,7 @@ _X_ is the directory where the generated files are stored.
 
 * Test and samples require a running instance of mongodb (`mongod`).
 
-* I am not sure if `--pkg posix` is required always.
+* I am not sure if `--pkg posix` is required explicitly, but it is needed for datetime types.
 
 
 ## Changelog
