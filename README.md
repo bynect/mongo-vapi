@@ -155,6 +155,8 @@ _X_ is the directory where the generated files are stored.
 
 * Deprecated or next-to-deprecation features _won't be binded_.
 
+* The tags/releases/versions of this repository are not related to `libmongoc` versions.
+
 * If you need only the VAPI file, you can download it from the [releases allegates](https://github.com/bynect/mongo-vapi/releases). Generating by yourself is probably better though.
 
 * Test and samples require a running instance of mongodb (`mongod`).
