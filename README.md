@@ -2,6 +2,8 @@
 
 Vala bindings for the [Mongo C Driver](https://github.com/mongodb/mongo-c-driver "mongo-c-driver").
 
+Note: The bindings are currently not being updated
+
 ## Generate VAPI file
 #### Oneliner
 
@@ -25,7 +27,7 @@ $ meson build
 ```
 
 #### Generate separated file
-You can generate also generate two separated file containing `libbson` and `libmongoc` bindings living under the _Bson_ and _Mongo_ namespace respectively.
+You can also generate two separate file containing `libbson` and `libmongoc` bindings living under the _Bson_ and _Mongo_ namespace respectively.
 
 ```sh
 #for make
